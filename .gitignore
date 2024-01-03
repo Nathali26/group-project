@@ -4,6 +4,3 @@
 node_modules/ 
 .DS_Store
 .env
-# SI PONGO .ENV AQUI NO SE EXPORTA A GIT
-# /dist esta estaba en fullstack asi qeu no se
-# /client/node_modules esta estaba en full sctak
