@@ -1,10 +1,10 @@
+DROP TABLE IF EXISTS users; 
 
--- Creación de tablas para un proyecto de recetas
---
+CREATE TABLE users (
+	id INT NOT NULL AUTO_INCREMENT, 
+	username VARCHAR(255) NOT NULL, 
+	password VARCHAR(255) NOT NULL, 
+	PRIMARY KEY (id)
+);
 
--- Desactivar verificación de claves foráneas temporalmente
-SET foreign_key_checks = 0;
 
-
--- Reactivar verificación de claves foráneas
-SET foreign_key_checks = 1;
