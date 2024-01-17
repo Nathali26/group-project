@@ -65,3 +65,6 @@ router.post("/login", async (req, res) => {
       message: "Let´s put the favorites here " + req.user_id,
     });
   });
+  
+  module.exports = router;
+
