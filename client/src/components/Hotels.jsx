@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Hotel() {
+export default function Hotels() {
   const [hoteles, setHoteles] = useState([]);
   const [consulta, setConsulta] = useState("");
   const [checkIn, setCheckIn] = useState("");
