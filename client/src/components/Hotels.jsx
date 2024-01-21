@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import './Hotels.css';
 
 export default function Hotels() {
 
@@ -8,6 +9,20 @@ export default function Hotels() {
 
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
+
+  useEffect(() => {
+    // Set the background image when the component mounts
+    document.body.style.backgroundImage = 'url("https://images.unsplash.com/photo-1600435335786-d74d2bb6de37?q=80&w=2060&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")';
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundAttachment = 'fixed';
+
+    // Cleanup function to reset the background when the component unmounts
+    return () => {
+      document.body.style.backgroundImage = '';
+      document.body.style.backgroundSize = '';
+      document.body.style.backgroundAttachment = '';
+    };
+  }, []);
 
   const handleSearchHotels = async () => {
     try {
@@ -69,8 +84,8 @@ export default function Hotels() {
   useEffect(() => {}, [hotels]);
 
   return (
-    <div>
-      <h1>Hotel List: </h1>
+    <div className="hotels-bg">
+      <h1>Where would you like to stay?</h1>
       <div>
         {hotels.map((hotel, index) => (
           <div key={index} className="hotel-card">
@@ -88,8 +103,8 @@ export default function Hotels() {
         ))}
       </div>
 
-      <form>
-        <label htmlFor="query">Consult:</label>
+      <form className="form">
+        <label className="label" htmlFor="query">Location:</label>
         <input
           type="text"
           id="query"
@@ -98,7 +113,7 @@ export default function Hotels() {
           onChange={(e) => setConsult(e.target.value)}
         />
 
-        <label htmlFor="checkIn">Check-in:</label>
+        <label className="label" htmlFor="checkIn">Check-in:</label>
         <input
           type="date"
           id="checkIn"
@@ -107,7 +122,7 @@ export default function Hotels() {
           onChange={(e) => setCheckIn(e.target.value)}
         />
 
-        <label htmlFor="checkOut">Check-out:</label>
+        <label className="label" htmlFor="checkOut">Check-out:</label>
         <input
           type="date"
           id="checkOut"
@@ -115,7 +130,7 @@ export default function Hotels() {
           value={checkOut}
           onChange={(e) => setCheckOut(e.target.value)}
         />
-        <button type="button" onClick={handleSearchHotels}>
+        <button className="search-btn" type="button" onClick={handleSearchHotels}>
           Search Hotels
         </button>
       </form>
