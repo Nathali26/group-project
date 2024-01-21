@@ -1,0 +1,20 @@
+.form {
+    background-color: rgba(252, 148, 148, 0.7);;
+    border-radius: 5%;
+    padding: 10px;
+    box-shadow: 0 0 30px 10px rgba(251, 235, 204, 0.3); 
+}
+
+.label {
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(251, 235, 204, 0.5);
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 5px;
+    font-size: large;
+}
+
+.search-btn {
+    padding: 10px;
+}
