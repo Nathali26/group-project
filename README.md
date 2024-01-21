@@ -46,6 +46,7 @@ Run `npm run migrate` in your **TERMINAL**, in the **project** folder (not your 
 
 
 
+
 - Run `npm start` in project directory to start the Express server on port 4000
 - `cd client` and run `npm run dev` to start client server in development mode with hot reloading in port 5173.
 - Client is configured so all API calls will be proxied to port 4000 for a smoother development experience. Yay!
