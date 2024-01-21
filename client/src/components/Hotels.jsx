@@ -1,53 +1,99 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Hotel() {
-  const [hoteles, setHoteles] = useState([]);
-  const [consulta, setConsulta] = useState("");
+export default function Hotels() {
+  const [hotels, setHotels] = useState([]);
+  const [consult, setConsult] = useState("");
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("/search-location", {
-          params: {
-            query: consulta,
-            checkIn: checkIn,
-            checkOut: checkOut,
-          },
-        });
+  const handleSearchHotels = async () => {
+    try {
+      // Aquí convertimos las fechas al formato YYYY-MM-DD
+      const formattedCheckIn = new Date(checkIn).toISOString().split("T")[0];
+      const formattedCheckOut = new Date(checkOut).toISOString().split("T")[0];
 
-        setHoteles(response.data.data || []);
-      } catch (error) {
-        console.error("Error", error);
+
+      const response = await axios.get("/api/searchLocation", {
+  params: {
+    query: consult,
+    checkIn: formattedCheckIn,
+    checkOut: formattedCheckOut,
+        },
+      });
+      // Log the complete response for debugging
+      console.log("Complete API Response:", response);
+
+      // Verifica si la respuesta y la estructura de datos son las esperadas
+      if (
+        response.data &&
+        response.data.data &&
+        Array.isArray(response.data.data)
+      ) {
+        // Extract data from the response
+        const hotelData = response.data.data;
+
+        // Verifica si hotelData tiene la estructura correcta
+        if (Array.isArray(hotelData)) {
+          // Extract relevant information for each hotel
+          const formattedHotels = hotelData.map((hotel) => ({
+            id: hotel.id,
+            title: hotel.title,
+            rating: hotel.bubbleRating?.rating || null,
+            provider: hotel.provider,
+            price: hotel.priceForDisplay?.text || null,
+            originalPrice: hotel.strikethroughPrice?.text || null,
+            externalUrl: hotel.commerceInfo?.externalUrl || null,
+          }));
+
+          // Update state with the formatted hotel data
+          setHotels(formattedHotels);
+          // Log the complete hotel response for debugging
+          console.log("Complete Hotel Response:", response);
+
+          // Log the extracted hotel details for debugging
+          console.log("Hotel Details:", formattedHotels);
+        } else {
+          console.error("Invalid hotelData structure:", hotelData);
+        }
+      } else {
+        console.error("Invalid response structure:", response.data);
       }
-    };
+    } catch (error) {
+      console.error("Error", error);
+    }
+  };
 
-    fetchData();
-  }, [consulta, checkIn, checkOut]);
+  useEffect(() => {}, [hotels]);
 
   return (
     <div>
-      <h1>Listado de Hoteles</h1>
-      <ul>
-        {hoteles.map((hotel, index) => (
-          <li key={index}>
-            <strong>{hotel.hotelName}</strong> - {hotel.address}, Rating:{" "}
-            {hotel.rating}
-          </li>
+      <h1>Hotel List: </h1>
+      <div>
+        {hotels.map((hotel, index) => (
+          <div key={index} className="hotel-card">
+            <h3>{hotel.title}</h3>
+            <p>Rating: {hotel.rating}</p>
+            <p>Provider: {hotel.provider}</p>
+            <p>Price: {hotel.price}</p>
+            {hotel.originalPrice && (
+              <p>Original Price: {hotel.originalPrice}</p>
+            )}
+            <a href={hotel.externalUrl} target="_blank">
+              Book Now
+            </a>
+          </div>
         ))}
-      </ul>
+      </div>
 
-      {/* Formulario en tu componente para enviar la consulta */}
-      <form action="/search-location" method="get">
-        <label htmlFor="query">Consulta:</label>
+      <form>
+        <label htmlFor="query">Consult:</label>
         <input
           type="text"
           id="query"
           name="query"
-          value={consulta}
-          onChange={(e) => setConsulta(e.target.value)}
+          value={consult}
+          onChange={(e) => setConsult(e.target.value)}
         />
 
         <label htmlFor="checkIn">Check-in:</label>
@@ -67,8 +113,9 @@ export default function Hotel() {
           value={checkOut}
           onChange={(e) => setCheckOut(e.target.value)}
         />
-
-        <button type="submit">Buscar Hoteles</button>
+        <button type="button" onClick={handleSearchHotels}>
+          Search Hotels
+        </button>
       </form>
     </div>
   );

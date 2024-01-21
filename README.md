@@ -38,9 +38,13 @@ In the MySQL CLI, type `CREATE DATABASE group_project;` to create a database in 
 
 Run the following in the MySQL CLI: `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'YOUR_PASSWORD';` (replace `YOUR_PASSWORD` with your actual password)
 
-Run `npm run migrate` in your **TERMINAL**, in the **project** folder (not your MySQL CLI! Open a new terminal window for this). This will create 3 tables called 'recipies','ingredients' and 'recipes_ingredients' in your database.
+Run `npm run migrate` in your **TERMINAL**, in the **project** folder (not your MySQL CLI! Open a new terminal window for this). This will create 1 table called 'users' in your database.
 
 ### Run Your Development Servers
+
+- Run npm install react-router-dom
+
+
 
 - Run `npm start` in project directory to start the Express server on port 4000
 - `cd client` and run `npm run dev` to start client server in development mode with hot reloading in port 5173.
