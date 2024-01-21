@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import './HomePage.css';
 import Hotels from './Hotels';
 import Flights from './Flights';
@@ -7,7 +8,7 @@ import { Routes, Route, Link, NavLink } from 'react-router-dom';
 export default function HomePage() {
   return (
     <div>
-      <div>
+      
         <h1>Where are you headed next?</h1>
       </div>
       <div>
@@ -21,7 +22,7 @@ export default function HomePage() {
           {/* <Route path = "/Attractions" element = {<Attractions />}/>
           <Route path = "/Restaurants" element = {<Restaurants />}/> */}
         </Routes>
-      </div>
+     
     </div>
-  )
+  );
 }
