@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Hotels() {
+
   const [hotels, setHotels] = useState([]);
   const [consult, setConsult] = useState("");
+
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
 
