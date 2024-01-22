@@ -1,35 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import { auth, googleProvider } from './firebase';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    // Add an authentication state observer
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
+  }, []);
+
+  const handleEmailSignUp = async () => {
+    try {
+      await auth.createUserWithEmailAndPassword(email, password);
+      // User registered successfully
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const handleEmailSignIn = async () => {
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      // User signed in successfully
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await auth.signInWithPopup(googleProvider);
+      // User signed in with Google successfully
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      // User signed out successfully
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div>
+      <h1>Your App</h1>
+      {user ? (
+        <div>
+          <p>Welcome, {user.displayName || user.email}!</p>
+          <button onClick={handleSignOut}>Sign Out</button>
+        </div>
+      ) : (
+        <div>
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={handleEmailSignUp}>Sign Up with Email/Password</button>
+          <button onClick={handleEmailSignIn}>Sign In with Email/Password</button>
+          <button onClick={handleGoogleSignIn}>Sign In with Google</button>
+        </div>
+      )}
+    </div>
+  );
+};
 
-export default App
+export default App;
