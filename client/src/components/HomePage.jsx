@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import './HomePage.css';
 import Hotels from './Hotels';
-import Flights from './Flights';
 import { Routes, Route } from 'react-router-dom';
+import Flights from './Flights';
+
 
 export default function HomePage() {
   return (

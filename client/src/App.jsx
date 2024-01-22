@@ -8,6 +8,9 @@ import Login from "./components/Login";
 import samplelogo from "./images/samplelogo.png";
 import React from "react";
 import Hotels from "./components/Hotels";
+import Flights from "./components/Flights";
+
+
 
 
 function App() {
@@ -51,6 +54,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/hotels" element={<Hotels />} />
+          <Route path="/flights" element={<Flights/>} /> 
         </Routes>
       </div>
     </>
