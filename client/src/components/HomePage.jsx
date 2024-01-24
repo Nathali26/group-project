@@ -1,42 +1,83 @@
-import React from 'react'
-import './HomePage.css';
-import Hotels from './Hotels';
-import Flights from './Flights';
-import { Routes, Route, Link, NavLink } from 'react-router-dom';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { auth, googleProvider } from './firebase';
 
-export default function HomePage() {
-  
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   useEffect(() => {
-    // Set the background image when the component mounts
-    document.body.style.backgroundImage = 'url("https://images.unsplash.com/photo-1531761535209-180857e963b9?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")';
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundAttachment = 'fixed';
+    // Add an authentication state observer
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
 
-    // Cleanup function to reset the background when the component unmounts
-    return () => {
-      document.body.style.backgroundImage = '';
-      document.body.style.backgroundSize = '';
-      document.body.style.backgroundAttachment = '';
-    };
+    // Cleanup subscription on unmount
+    return () => unsubscribe();
   }, []);
-  
+
+  const handleEmailSignUp = async () => {
+    try {
+      await auth.createUserWithEmailAndPassword(email, password);
+      // User registered successfully
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const handleEmailSignIn = async () => {
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      // User signed in successfully
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await auth.signInWithPopup(googleProvider);
+      // User signed in with Google successfully
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      // User signed out successfully
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   return (
-    <div className='homepage-bg'>
-      <h1>Where are you headed next?</h1>
-      <div>
-        <Link to="/Hotels"><button>Hotels</button></Link>
-        <Link to="/Flights"><button>Flights</button></Link>
-         {/* <Link to = "/Attractions"><button>Attractions</button></Link>
-        <Link to = "/Restaurants"><button>Restaurants</button></Link> */}
-        <Routes>
-          <Route path="/Hotels" element={<Hotels />} />
-          <Route path="/Flights" element={<Flights />} />
-          {/* <Route path = "/Attractions" element = {<Attractions />}/>
-          <Route path = "/Restaurants" element = {<Restaurants />}/> */}
-        </Routes>
-      </div>
+    <div>
+      <h1>Your App</h1>
+      {user ? (
+        <div>
+          <p>Welcome, {user.displayName || user.email}!</p>
+          <button onClick={handleSignOut}>Sign Out</button>
+        </div>
+      ) : (
+        <div>
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button onClick={handleEmailSignUp}>Sign Up with Email/Password</button>
+          <button onClick={handleEmailSignIn}>Sign In with Email/Password</button>
+          <button onClick={handleGoogleSignIn}>Sign In with Google</button>
+        </div>
+      )}
     </div>
   );
-}
+};
 
+export default App;
