@@ -52,7 +52,7 @@ function App() {
       </nav>
       <div>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<HomePage />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/hotels" element={<Hotels />} />
           <Route path="/Favourites" element={<Favourites />} />
