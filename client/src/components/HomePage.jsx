@@ -20,8 +20,7 @@ export default function HomePage() {
       document.body.style.backgroundAttachment = '';
     };
   }, []);
-  
-  return (
+    return (
     <div className='homepage-bg'>
       <h1>Where are you headed next?</h1>
       <div>
@@ -38,5 +37,5 @@ export default function HomePage() {
       </div>
     </div>
   );
-}
+};
 
