@@ -5,6 +5,9 @@ import HomePage from './components/HomePage';
 import Login from './components/Login';
 import samplelogo from './images/samplelogo.png';
 import Hotels from './components/Hotels';
+import Favourites from './components/Favourites';
+import Flights from './components/Flights';
+import Attractions from './components/Attractions'
 
 function App() {
   const [count, setCount] = useState(0);
@@ -34,6 +37,11 @@ function App() {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link className="nav-link" to="/Favourites">
+                  My Favourites
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link className="nav-link" to="/Login">
                   Sign in
                 </Link>
@@ -47,6 +55,9 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/hotels" element={<Hotels />} />
+          <Route path="/Favourites" element={<Favourites />} />
+          <Route path="/Flights" element={<Flights />} />
+          <Route path="/Attractions" element={<Attractions />} />
         </Routes>
       </div>
     </>
