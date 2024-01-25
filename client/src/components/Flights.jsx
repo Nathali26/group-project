@@ -51,11 +51,12 @@ const handleSubmit = (event)=>{
   const originOptions = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '693a320c7amshf8a3f0479327cbap12dca4jsn254f4f98016a',
+      'X-RapidAPI-Key': '6eafd6dacamsh9595106e7e22e75p1d3894jsn14bcd3ec4338',
       'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
     },
   };
-  searchAirport(originUrl, 'cityOrigin', originOptions);
+   searchAirport(originUrl, 'cityOrigin', originOptions);
+   setCityOrigin('');
 
 
    // Fetch for cityDestination
@@ -63,14 +64,14 @@ const handleSubmit = (event)=>{
    const destinationOptions = {
     method: 'GET',
     headers: {
-      'X-RapidAPI-Key': '693a320c7amshf8a3f0479327cbap12dca4jsn254f4f98016a',
+      'X-RapidAPI-Key': '6eafd6dacamsh9595106e7e22e75p1d3894jsn14bcd3ec4338',
       'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
     },
   };
   /* params: {query: `${cityName}`},  when I had the same URL for both*/ 
   searchAirport(destinationUrl, 'cityDestination', destinationOptions);
 
-  setCityOrigin('');
+  
   setCityDestination("");
 };
 
@@ -96,9 +97,9 @@ async function searchAirport(url, cityId, options) { /* this cityId, it´s just 
 || '':  if newAirportCode is undefined (due to optional chaining) or if the extracted airportCode is falsy, it will default to an empty string (''). */
 
   if (cityId === 'cityOrigin') {
-    setAirportCodeOrigin([data.data[0].airportCode]); /* double data, cause I call the WHOLE THING data  !!!!! */
+    setAirportCodeOrigin([data.data[0]?.children[0]?.airportCode ?? data.data[0]?.airportCode]); /* double data, cause I call the WHOLE THING data  !!!!! */
   } else if (cityId === 'cityDestination') {
-    setAirportCodeDestination([data.data[0].airportCode]);
+    setAirportCodeDestination([data.data[0]?.children[0]?.airportCode ?? data.data[0]?.airportCode]);
   }
    
   } catch (err) {
