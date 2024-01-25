@@ -9,6 +9,8 @@ import Favourites from './components/Favourites';
 import Flights from './components/Flights';
 import Attractions from './components/Attractions'
 import Restaurants from './components/Restaurants'
+import FlightDetailsComponent from './components/FlightDetailsComponent';
+
 
 function App() {
   const [count, setCount] = useState(0);
@@ -62,6 +64,7 @@ function App() {
           <Route path="/Restaurants" element={<Restaurants />} />
         </Routes>
       </div>
+      <FlightDetailsComponent getFlightDetailsCb= {(flightParameters) => getFlightParameters(flightParameters)}/>
     </>
   );
 }
