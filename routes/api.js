@@ -83,4 +83,6 @@ router.get("/searchLocation", async function (req, res, next) {
   }
 });
 
+//Send favourites to the favourites db
+
 module.exports = router;

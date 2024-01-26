@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Hotels.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons"; // Import the heart icon for favourites
 
 export default function Hotels() {
 
@@ -30,6 +32,14 @@ export default function Hotels() {
       const formattedCheckIn = new Date(checkIn).toISOString().split("T")[0];
       const formattedCheckOut = new Date(checkOut).toISOString().split("T")[0];
 
+      //Add hotels to favourites list
+      const handleAddToFavourites = async (hotel) => {
+        try {
+          await axios.post("http://localhost:4000/api/favourites", hotel);
+        } catch (error) {
+          console.error("Error adding to favourites:", error);
+        }
+      };
 
       const response = await axios.get("/api/searchLocation", {
   params: {
@@ -99,6 +109,12 @@ export default function Hotels() {
             <a href={hotel.externalUrl} target="_blank">
               Book Now
             </a>
+            <button 
+              onClick={() => handleAddToFavourites(hotel)}
+              className="favourite-btn"
+            >
+              <FontAwesomeIcon icon={faHeart} /> {/* Heart icon */}
+            </button>
           </div>
         ))}
       </div>
