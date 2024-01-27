@@ -1,0 +1,467 @@
+
+{
+  "status": true,
+  "message": "Success",
+  "timestamp": 1706198263553,
+  "data": {
+    "sortDisclaimer": "4,000 of 4,000+ places are available, sorted by <span class=\"underline\">best value</span>",
+    "data": [
+      {
+        "id": "193105",
+        "title": "The Landmark London",
+        "primaryInfo": null,
+        "secondaryInfo": "Marylebone",
+        "badge": {
+          "size": "SMALL",
+          "type": "TRAVELLER_CHOICE",
+          "year": "2023"
+        },
+        "bubbleRating": {
+          "count": "707",
+          "rating": 4.5
+        },
+        "isSponsored": true,
+        "accentedLabel": false,
+        "provider": "Booking.com",
+        "priceForDisplay": "$483",
+        "strikethroughPrice": null,
+        "priceDetails": null,
+        "priceSummary": null,
+        "cardPhotos": [
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 4572,
+              "maxWidth": 8132,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/55/20/b6/lobby.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 1667,
+              "maxWidth": 2500,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/c7/07/db/the-landmark-london-atrium.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 4411,
+              "maxWidth": 6616,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/0d/37/45/exterior.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 4351,
+              "maxWidth": 6526,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/0d/37/bd/picture.jpg?w={width}&h={height}&s=1"
+            }
+          }
+        ],
+        "commerceInfo": {
+          "externalUrl": "https://www.tripadvisor.in/Commerce?p=BookingCom&src=32428350&geo=193105&from=HotelDateSearch_Hotels&slot=1&matchID=1&oos=0&cnt=1&silo=47212&bucket=995258&nrank=1&crank=1&clt=SLMM&ttype=SponsoredMobileMeta&tm=286109841&managed=false&capped=false&gosox=AeUn6zAkI1NLf4CYw_dXTC1nXTGlLlLhu0_PS0IkfHDn_w0p0eVJVVLt-9-s5GINj1Nl2-SgGYFpehm-jSsQiJNPNf5Txdym5dCZZEgO1MNXqbuR8rELOWTd79H2z667ryOXjtUCrCUBqcaDb9puTNIlSQEWf-YlXtTy8qnno4pz4zoNPDtD47-8jCl4VQn2tQ0YUckpbP5AY_ev9XJwoLOwVKdXnd_xzuzj7MxdrgTMZmqjeOAqZjUInCkiPrGV5wKqVWevjxap2p4kG0KFtQ&priceShown=483&pm=AIWE&hac=AVAILABLE&mbl=LOSE&mbldelta=6400&rq=ML&rate=395.1500&fees=88.0100&cur=USD&adults=1&child_rm_ages=&inDay=26&outDay=29&rdex=RDEX_c5dbe9de0d2beddf72a1cacf01ed977&rooms=1&inMonth=1&inYear=2024&outMonth=1&outYear=2024&auid=89199d07-4ac6-4720-b886-7f92f22f2998&def_d=true&bld=L_3,D_1,G_1,W_5,U_1,C_240126,T_16&bh=true&cs=1cf697a89554a329a1003f900bffd1995&ik=e30fa2796afc4fb2b42b75bf8b7a4a7d&aok=a182c929486a4b2f89d5ff5ce5bb0c5f&tp=APS-Hotels&pageLocId=186338&area=Spons%7CSpons_Meta_Pref",
+          "provider": "Booking.com",
+          "loadingMessage": null,
+          "priceForDisplay": {
+            "text": "$483",
+            "debugValueKey": null
+          },
+          "strikethroughPrice": null,
+          "pricingPeriod": null,
+          "details": null,
+          "commerceSummary": null,
+          "roomUrgencyMessage": null,
+          "labels": []
+        }
+      },
+      {
+        "id": "15134890",
+        "title": "1. The Resident Covent Garden",
+        "primaryInfo": null,
+        "secondaryInfo": "Covent Garden",
+        "badge": {
+          "size": "SMALL",
+          "type": "BEST_OF_BEST",
+          "year": "2023"
+        },
+        "bubbleRating": {
+          "count": "1,665",
+          "rating": 5
+        },
+        "isSponsored": false,
+        "accentedLabel": false,
+        "provider": "Booking.com",
+        "priceForDisplay": "$353",
+        "strikethroughPrice": null,
+        "priceDetails": "Reserve now, pay at stay",
+        "priceSummary": null,
+        "cardPhotos": [
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 1365,
+              "maxWidth": 2048,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/96/55/e8/the-nadler-covent-garden.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 1365,
+              "maxWidth": 2048,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/da/9b/56/reception.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 1365,
+              "maxWidth": 2048,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/79/ea/1a/the-nadler-covent-garden.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 1365,
+              "maxWidth": 2048,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/da/9e/72/mini-kitchen-stocked.jpg?w={width}&h={height}&s=1"
+            }
+          }
+        ],
+        "commerceInfo": {
+          "externalUrl": "https://www.tripadvisor.in/Commerce?p=BookingCom&src=138020436&geo=15134890&from=HotelDateSearch_Hotels&slot=1&matchID=1&oos=0&cnt=11&silo=10476&bucket=902999&nrank=1&crank=1&clt=M&ttype=MobileCR&tm=286109841&managed=false&capped=false&gosox=0SMnRH42gs6PxC87Twp-MLJ14x4VqJH08wJEcvD7StctZ10xpS5S4btPz0tCJHxwZ7bUAsJh6NSyurgpNHUrTZ7FlKEunEWeWxP3ThVffEiTTzX-U8XcpuXQmWRIDtTDXpNNqW9iKLO365gdYh0RkoY1AJQsqahMWI1lAySR1_i_LoZX0L0KWwXIucrwoMAi_BpxGyHEhTlCXnaaXi-_qC432YfN3D-mI6o6U-li7pYxSSJJz7paY3hFLq4OapzzQ67iqBPJmLaCiLTFrg0pWqeBptGsVEzf1bcrgYM6tvA&priceShown=353&pm=AIWE&hac=AVAILABLE&mbl=LOSE&mbldelta=6700&rq=P&rate=294.4200&fees=58.8800&cur=USD&adults=1&child_rm_ages=&inDay=26&outDay=29&rdex=RDEX_11f41675f8a6bb3020c557e07a149e35&rooms=1&inMonth=1&inYear=2024&outMonth=1&outYear=2024&auid=0dc59d6c-4f1b-4546-95af-10fd95480126&def_d=true&bld=L_3,D_1,G_1,W_5,U_1,C_240126,T_16&bh=true&cs=19f816439387838c24e4854d6d561f64f&ik=e30fa2796afc4fb2b42b75bf8b7a4a7d&aok=51e21a8e36494e179fe2f04dd4e41361&tp=APS-Hotels&pageLocId=186338",
+          "provider": "Booking.com",
+          "loadingMessage": null,
+          "priceForDisplay": {
+            "text": "$353",
+            "debugValueKey": null
+          },
+          "strikethroughPrice": null,
+          "pricingPeriod": null,
+          "details": {
+            "text": "Reserve now, pay at stay"
+          },
+          "commerceSummary": null,
+          "roomUrgencyMessage": null,
+          "labels": []
+        }
+      },
+      {
+        "id": "6484754",
+        "title": "2. Shangri-La The Shard, London",
+        "primaryInfo": null,
+        "secondaryInfo": "Southwark",
+        "badge": {
+          "size": "SMALL",
+          "type": "BEST_OF_BEST",
+          "year": "2023"
+        },
+        "bubbleRating": {
+          "count": "7,135",
+          "rating": 5
+        },
+        "isSponsored": false,
+        "accentedLabel": false,
+        "provider": "Booking.com",
+        "priceForDisplay": "$957",
+        "strikethroughPrice": null,
+        "priceDetails": null,
+        "priceSummary": null,
+        "cardPhotos": [
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 683,
+              "maxWidth": 1023,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/1f/c1/8c/shangri-la-hotel-at-the.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 573,
+              "maxWidth": 787,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/b6/3d/13/ting-lounge.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 1536,
+              "maxWidth": 2048,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/44/75/92/photo5jpg.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 741,
+              "maxWidth": 1021,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/b6/3d/c8/ting-restaurant.jpg?w={width}&h={height}&s=1"
+            }
+          }
+        ],
+        "commerceInfo": {
+          "externalUrl": "https://www.tripadvisor.in/Commerce?p=BookingCom&src=58985990&geo=6484754&from=HotelDateSearch_Hotels&slot=1&matchID=1&oos=0&cnt=8&silo=10476&bucket=902999&nrank=1&crank=1&clt=M&ttype=MobileCR&tm=286109841&managed=false&capped=false&gosox=Sw3MLhrn_nS4M6XEZctBobJ14x4VqJH08wJEcvD7StctZ10xpS5S4btPz0tCJHxwiLOr2SW3d7ci8P0v6O8yHi8vhjhjvwH1XAQrz8atc1STTzX-U8XcpuXQmWRIDtTDXpNNqW9iKLO365gdYh0RkpLPGuawwyfadi4cSdABDTYfR1QRt35HKJoyFlLDFfQepzWYFy0UE870Xd3qRmdnGq8V3gHu0yzHBj562QGdoqnVtZD8CZibtz-up93_uXs9Jf17-q40OZu8SaHjPih98bJoplqN_wGeImVLIRRrjvA&priceShown=957&pm=AIWE&hac=AVAILABLE&mbl=LOSE&mbldelta=6900&rq=P&rate=797.1600&fees=159.4300&cur=USD&adults=1&child_rm_ages=&inDay=26&outDay=29&rdex=RDEX_60ab141f90243bb1f7329af0185ce811&rooms=1&inMonth=1&inYear=2024&outMonth=1&outYear=2024&auid=6d5d65c4-65c3-4b1b-819c-1b507fee9272&def_d=true&bld=L_3,D_1,G_1,W_5,U_1,C_240126,T_16&bh=true&cs=15efee3febd89524f457820bc895be14f&ik=e30fa2796afc4fb2b42b75bf8b7a4a7d&aok=748a8d465083483e9ae5b1789ea5b5e9&tp=APS-Hotels&pageLocId=186338",
+          "provider": "Booking.com",
+          "loadingMessage": null,
+          "priceForDisplay": {
+            "text": "$957",
+            "debugValueKey": null
+          },
+          "strikethroughPrice": null,
+          "pricingPeriod": null,
+          "details": null,
+          "commerceSummary": null,
+          "roomUrgencyMessage": null,
+          "labels": []
+        }
+      },
+      {
+        "id": "195284",
+        "title": "3. Royal Lancaster London",
+        "primaryInfo": null,
+        "secondaryInfo": null,
+        "badge": {
+          "size": "SMALL",
+          "type": "BEST_OF_BEST",
+          "year": "2023"
+        },
+        "bubbleRating": {
+          "count": "1,871",
+          "rating": 5
+        },
+        "isSponsored": false,
+        "accentedLabel": false,
+        "provider": "Booking.com",
+        "priceForDisplay": "$428",
+        "strikethroughPrice": null,
+        "priceDetails": null,
+        "priceSummary": null,
+        "cardPhotos": [
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 958,
+              "maxWidth": 2000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/72/66/99/view-from-our-park-suites.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 2882,
+              "maxWidth": 4698,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/e2/10/2b/royal-lancaster-london.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 1155,
+              "maxWidth": 2000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/ec/30/90/classic-room.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 1382,
+              "maxWidth": 2000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/ec/2c/38/nipa-thai-head-chef.jpg?w={width}&h={height}&s=1"
+            }
+          }
+        ],
+        "commerceInfo": {
+          "externalUrl": "https://www.tripadvisor.in/Commerce?p=BookingCom&src=32428487&geo=195284&from=HotelDateSearch_Hotels&slot=1&matchID=1&oos=0&cnt=10&silo=10476&bucket=902999&nrank=1&crank=1&clt=M&ttype=MobileCR&tm=286109841&managed=false&capped=false&gosox=AzyR82wC-_DLfUNluD4hBbJ14x4VqJH08wJEcvD7StctZ10xpS5S4btPz0tCJHxwKCgjek6FFqkSvtIkE5XMNAEzhOpyQck8wF2IbzGRylqTTzX-U8XcpuXQmWRIDtTDXpNNqW9iKLO365gdYh0RklCPanJ0csc8i41kh2ogra4J7s8b9N9wdj5DMYEVuKabgE7wtXMhF34pQtaahvSsGctefMBm8EwZSivayq4d-q76_-HE1VeRpIHBEyaPXC0oz6Dyn_1aJujqGc84wcWWOSqVzYYzkfX9kACVWaIfDoI&priceShown=428&pm=AIWE&hac=AVAILABLE&mbl=LOSE&mbldelta=6500&rq=P&rate=349.6700&fees=77.8800&cur=USD&adults=1&child_rm_ages=&inDay=26&outDay=29&rdex=RDEX_5aaa4a2f2d1c4df5b7eac3ed5df6e39d&rooms=1&inMonth=1&inYear=2024&outMonth=1&outYear=2024&auid=034fc294-14f5-449e-97c1-3f50d2e92b6b&def_d=true&bld=L_3,D_1,G_1,W_5,U_1,C_240126,T_16&bh=true&cs=1727c2ff2395f20268b311a1c5e6f8b7d&ik=e30fa2796afc4fb2b42b75bf8b7a4a7d&aok=e4a353b899f64ffcad9fe39ed4aaae84&tp=APS-Hotels&pageLocId=186338",
+          "provider": "Booking.com",
+          "loadingMessage": null,
+          "priceForDisplay": {
+            "text": "$428",
+            "debugValueKey": null
+          },
+          "strikethroughPrice": null,
+          "pricingPeriod": null,
+          "details": null,
+          "commerceSummary": null,
+          "roomUrgencyMessage": null,
+          "labels": []
+        }
+      },
+      {
+        "id": "23246836",
+        "title": "4. Canopy by Hilton London City",
+        "primaryInfo": null,
+        "secondaryInfo": "Whitechapel",
+        "badge": {
+          "size": "SMALL",
+          "type": "TRAVELLER_CHOICE",
+          "year": "2023"
+        },
+        "bubbleRating": {
+          "count": "919",
+          "rating": 5
+        },
+        "isSponsored": false,
+        "accentedLabel": false,
+        "provider": "Booking.com",
+        "priceForDisplay": "$268",
+        "strikethroughPrice": null,
+        "priceDetails": null,
+        "priceSummary": null,
+        "cardPhotos": [
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 682,
+              "maxWidth": 1023,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/b7/f3/25/exterior.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 2006,
+              "maxWidth": 3000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/60/0c/33/king-just-right-room.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 2001,
+              "maxWidth": 3000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/60/0b/c3/retreat.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 2002,
+              "maxWidth": 3000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/21/60/0b/c2/penny-squares-restaurant.jpg?w={width}&h={height}&s=1"
+            }
+          }
+        ],
+        "commerceInfo": {
+          "externalUrl": "https://www.tripadvisor.in/Commerce?p=BookingCom&src=205267439&geo=23246836&from=HotelDateSearch_Hotels&slot=1&matchID=1&oos=0&cnt=9&silo=10476&bucket=902999&nrank=1&crank=1&clt=M&ttype=MobileCR&tm=286109841&managed=false&capped=false&gosox=5W34nIYFt0kpCjYb0wLixstNnNm005ag7N18ngn-bPSZVDwHKd9ZvyDIiOqh3NJ_q-xsofqzkKzt8pvDTYDa7uI99kAPAapsDPLiM-twCTQLhjNHR4xWXIQomzC_ZPO83TlFsxRa5A_o6PQZ21y4-k-Obt06V9HMZjkfggmf1W1fcBO8Qc78M_SnYBbWesUJLbQQLRjjc3nXkvzhWG3ZmHFmXERM3wFP9r2syb2-VBgqkpUoUBP5e3XekeA1nCpgiy-UzJGKliALHOAr5BY2uAODxf4AuNAUi0MEASq7uqo&priceShown=268&pm=AIWE&hac=AVAILABLE&mbl=LOSE&mbldelta=400&rq=P&rate=223.2000&fees=44.6400&cur=USD&adults=1&child_rm_ages=&inDay=26&outDay=29&rdex=RDEX_21546f7e85bdd1b7a64f1611a1c4c5ad&rooms=1&inMonth=1&inYear=2024&outMonth=1&outYear=2024&auid=b05c3b32-997f-4225-9ec4-41d817cb8d0a&def_d=true&bld=L_3,D_1,G_1,W_5,U_1,C_240126,T_16&bh=true&cs=1e166b15ebbfb85ffebf08e038d84c8b0&ik=e30fa2796afc4fb2b42b75bf8b7a4a7d&aok=1d16390e0d3d494990aff33f914250ee&tp=APS-Hotels&pageLocId=186338",
+          "provider": "Booking.com",
+          "loadingMessage": null,
+          "priceForDisplay": {
+            "text": "$268",
+            "debugValueKey": null
+          },
+          "strikethroughPrice": null,
+          "pricingPeriod": null,
+          "details": null,
+          "commerceSummary": null,
+          "roomUrgencyMessage": null,
+          "labels": []
+        }
+      },
+      {
+        "id": "3164384",
+        "title": "5. Park Grand London Hyde Park",
+        "primaryInfo": null,
+        "secondaryInfo": null,
+        "badge": {
+          "size": "SMALL",
+          "type": "TRAVELLER_CHOICE",
+          "year": "2023"
+        },
+        "bubbleRating": {
+          "count": "4,183",
+          "rating": 4.5
+        },
+        "isSponsored": false,
+        "accentedLabel": "34% LESS THAN USUAL",
+        "provider": "Vio.com",
+        "priceForDisplay": "$101",
+        "strikethroughPrice": "$132",
+        "priceDetails": "Free cancellation",
+        "priceSummary": null,
+        "cardPhotos": [
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 480,
+              "maxWidth": 640,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/e4/21/dd/exterior-view.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 1233,
+              "maxWidth": 2000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/8f/7d/83/park-grand-london-hyde.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 1326,
+              "maxWidth": 2000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/8f/7c/a3/park-grand-london-hyde.jpg?w={width}&h={height}&s=1"
+            }
+          },
+          {
+            "__typename": "AppPresentation_PhotoItem",
+            "sizes": {
+              "__typename": "AppPresentation_PhotoItemSizeDynamic",
+              "maxHeight": 1360,
+              "maxWidth": 2000,
+              "urlTemplate": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/8f/7d/68/park-grand-london-hyde.jpg?w={width}&h={height}&s=1"
+            }
+          }
+        ],
+        "commerceInfo": {
+          "externalUrl": "https://www.tripadvisor.in/Commerce?p=Vio&src=240792964&geo=3164384&from=HotelDateSearch_Hotels&slot=1&matchID=1&oos=0&cnt=8&silo=47458&bucket=997363&nrank=1&crank=1&clt=M&ttype=MobileCR&tm=286109841&managed=false&capped=false&gosox=isgC0EYaPcUyvQXwhHvqwc7WRBwmV7Dq3rQ7-En8QlbOhSXaQBnzOHAJSHldDZPLR3cUOrVG6A3pLxZ5vXo0oENIgd2_wh24K_MH-6DOE2kQd45TtWEyJEFzpAxyvSBN1CiG8Nb9yPOxP9pePPe2EMCgRkAHbpfg4hyfCmOEFKYts5XDQ0KH23xBPRA8CZ0Bx81Gh0F2_cPqHq39r01eMfmCh5OYrGnu2p5phAED_UvqJUHn5IUQ-Vg1IFyhf00Hyu6QgGB836asf12PWViN-lf0xJG3rSvqHm34XkZ1BKo&priceShown=101&pm=AIWE&hac=AVAILABLE&mbl=BEAT&mbldelta=0&rq=P&rate=84.0800&fees=16.8200&cur=USD&adults=1&child_rm_ages=&inDay=26&outDay=29&rdex=RDEX_21551bea4e5a201fcbd9f77c06574ecd&rooms=1&inMonth=1&inYear=2024&outMonth=1&outYear=2024&auid=d77934b0-c90c-4c52-bbff-f08d34989e42&def_d=true&bld=L_3,D_1,G_1,W_5,U_1,C_240126,T_16&bh=true&cs=148f860cde68b9a145394de8e324b83e8&ik=e30fa2796afc4fb2b42b75bf8b7a4a7d&aok=abc3c5bfc8254db6afe3c768261cd41e&tp=APS-Hotels&pageLocId=186338",
+          "provider": "Vio.com",
+          "loadingMessage": null,
+          "priceForDisplay": {
+            "text": "$101",
+            "debugValueKey": null
+          },
+          "strikethroughPrice": {
+            "text": "$132"
+          },
+          "pricingPeriod": null,
+          "details": {
+            "text": "Free cancellation"
+          },
+          "commerceSummary": null,
+          "roomUrgencyMessage": null,
+          "labels": []
+        }
+      }
+    ]
+  }
+}
