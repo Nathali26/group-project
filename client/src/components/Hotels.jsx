@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import './Hotels.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons"; // Import the heart icon for favourites
 
-export default function Hotels() {
-
+export default function App() {
   const [hotels, setHotels] = useState([]);
   const [consult, setConsult] = useState("");
-
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     // Set the background image when the component mounts
@@ -28,96 +27,104 @@ export default function Hotels() {
 
   const handleSearchHotels = async () => {
     try {
-      // Aquí convertimos las fechas al formato YYYY-MM-DD
       const formattedCheckIn = new Date(checkIn).toISOString().split("T")[0];
       const formattedCheckOut = new Date(checkOut).toISOString().split("T")[0];
 
-      //Add hotels to favourites list
-      const handleAddToFavourites = async (hotel) => {
-        try {
-          await axios.post("http://localhost:4000/api/favourites", hotel);
-        } catch (error) {
-          console.error("Error adding to favourites:", error);
+
+      const locationResponse = await axios.get(
+        "https://tripadvisor16.p.rapidapi.com/api/v1/hotels/searchLocation",
+        {
+          params: {
+            query: consult,
+            limit: 1,
+          },
+          headers: {
+            "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
+            "X-RapidAPI-Key":
+              "0c1ec7c873msh14f30084fdd46dcp1a4aaejsnaf3c1fa88581",
+            "Content-Type": "application/json",
+          },
         }
-      };
+      );
 
-      const response = await axios.get("/api/searchLocation", {
-  params: {
-    query: consult,
-    checkIn: formattedCheckIn,
-    checkOut: formattedCheckOut,
-        },
-      });
-      // Log the complete response for debugging
-      console.log("Complete API Response:", response);
 
-      // Verifica si la respuesta y la estructura de datos son las esperadas
       if (
-        response.data &&
-        response.data.data &&
-        Array.isArray(response.data.data)
+        locationResponse.data &&
+        locationResponse.data.data &&
+        locationResponse.data.data.length > 0
       ) {
-        // Extract data from the response
-        const hotelData = response.data.data;
+        
+         const firstGeoId = locationResponse?.data?.data?.[0]?.geoId || null;
 
-        // Verifica si hotelData tiene la estructura correcta
-        if (Array.isArray(hotelData)) {
-          // Extract relevant information for each hotel
-          const formattedHotels = hotelData.map((hotel) => ({
-            id: hotel.id,
-            title: hotel.title,
-            rating: hotel.bubbleRating?.rating || null,
-            provider: hotel.provider,
-            price: hotel.priceForDisplay?.text || null,
-            originalPrice: hotel.strikethroughPrice?.text || null,
-            externalUrl: hotel.commerceInfo?.externalUrl || null,
-          }));
 
-          // Update state with the formatted hotel data
-          setHotels(formattedHotels);
-          // Log the complete hotel response for debugging
-          console.log("Complete Hotel Response:", response);
 
-          // Log the extracted hotel details for debugging
-          console.log("Hotel Details:", formattedHotels);
+          console.log("el firstgeoId es este=" ,firstGeoId)
+
+        if (firstGeoId) {
+          const hotelApiUrl =
+            "https://tripadvisor16.p.rapidapi.com/api/v1/hotels/searchHotels";
+
+          const hotelParams = {
+            geoId: firstGeoId,
+            checkIn: formattedCheckIn,
+            checkOut: formattedCheckOut,
+          };
+
+          const hotelResponse = await axios.get(hotelApiUrl, {
+            params: hotelParams,
+            headers: {
+              "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
+              "X-RapidAPI-Key":
+                "0c1ec7c873msh14f30084fdd46dcp1a4aaejsnaf3c1fa88581",
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (
+            hotelResponse.data &&
+            hotelResponse.data.data &&
+            hotelResponse.data.data.data &&
+            Array.isArray(hotelResponse.data.data.data)
+          ) {
+            const hotelData = hotelResponse.data.data.data;
+
+            if (hotelData.length > 0) {
+              const formattedHotels = hotelData.map((hotel) => ({
+                id: hotel.id,
+                title: hotel.title,
+                rating: hotel.bubbleRating?.rating || null,
+                provider: hotel.provider,
+                price: hotel.priceForDisplay?.text || null,
+                originalPrice: hotel.strikethroughPrice?.text || null,
+                externalUrl: hotel.commerceInfo?.externalUrl || null,
+              }));
+
+              setHotels(formattedHotels);
+              console.log("Complete Hotel Response:", hotelResponse);
+              console.log("Hotel Details:", formattedHotels);
+            } else {
+              console.error("No hotels found in the response");
+            }
+          } else {
+            console.error("Invalid response structure:", hotelResponse.data);
+          }
         } else {
-          console.error("Invalid hotelData structure:", hotelData);
+          console.error("No geoId found in the response");
         }
       } else {
-        console.error("Invalid response structure:", response.data);
+        console.error("No data found in the location response");
       }
     } catch (error) {
-      console.error("Error", error);
+      setError(`Error: ${error.message}`);
+      console.error("El error del catch es:", error);
     }
   };
 
-  useEffect(() => {}, [hotels]);
-
   return (
-    <div className="hotels-bg">
-      <h1>Where would you like to stay?</h1>
-      <div>
-        {hotels.map((hotel, index) => (
-          <div key={index} className="hotel-card">
-            <h3>{hotel.title}</h3>
-            <p>Rating: {hotel.rating}</p>
-            <p>Provider: {hotel.provider}</p>
-            <p>Price: {hotel.price}</p>
-            {hotel.originalPrice && (
-              <p>Original Price: {hotel.originalPrice}</p>
-            )}
-            <a href={hotel.externalUrl} target="_blank">
-              Book Now
-            </a>
-            <button 
-              onClick={() => handleAddToFavourites(hotel)}
-              className="favourite-btn"
-            >
-              <FontAwesomeIcon icon={faHeart} /> {/* Heart icon */}
-            </button>
-          </div>
-        ))}
-      </div>
+
+    <div>
+      <h1>Hotel List: </h1>
+
 
       <form className="form">
         <label className="label" htmlFor="query">Location:</label>
@@ -150,6 +157,27 @@ export default function Hotels() {
           Search Hotels
         </button>
       </form>
+      <div>
+        {hotels.map((hotel, index) => (
+          <div key={index} className="hotel-card">
+            <h3>{hotel.title}</h3>
+            <p>Rating: {hotel.rating}</p>
+            <p>Provider: {hotel.provider}</p>
+            <p>Price: {hotel.price}</p>
+            {hotel.originalPrice && (
+              <p>Original Price: {hotel.originalPrice}</p>
+            )}
+            <a
+              href={hotel.externalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book Now
+            </a>
+          </div>
+        ))}
+      </div>
+      {error && <p>{error}</p>}
     </div>
   );
 }
