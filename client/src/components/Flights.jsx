@@ -4,129 +4,261 @@ import { useEffect } from 'react';
 import './Flights.css';
 
 
+ 
+
 export default function Flights() {
 
 //I set the backgrounds here because I was having trouble setting different backgrounds for different components
-    useEffect(() => {
+    /* useEffect(() => {
       // Set the background image when the component mounts
       document.body.style.backgroundImage = 'url("https://images.unsplash.com/photo-1606768666853-403c90a981ad?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")';
       document.body.style.backgroundSize = 'cover';
-      document.body.style.backgroundAttachment = 'fixed';
+      document.body.style.backgroundAttachment = 'fixed'; */
 
 // Cleanup function to reset the background when the component unmounts
-return () => {
+/* return () => {
   document.body.style.backgroundImage = '';
   document.body.style.backgroundSize = '';
   document.body.style.backgroundAttachment = '';
 };
-}, []);
+}, []); */
 
+const EMPTY_FORM = {
+  outboundDate: '',
+  itineraryType: '',
+  numAdults: "",
+  returnDate:""
+} 
 
+  const [flightParameters, setFlightParameters] = useState(EMPTY_FORM);
   const [cityOrigin, setCityOrigin] = useState("")
   const [cityDestination, setCityDestination] = useState("");
-  /* const [cityName, setCityName] = useState('');  */  /* I can´t use the same state for both city origin and destination, cause it changes simultaneously both inputs as I write online!!! */
+  /* const [cityName, setCityName] = useState('');  */  /* I can´t use the same state for both city origin and destination, cause it changes simultaneously both inputs as I write!!! */
   const [airportCodeOrigin, setAirportCodeOrigin]= useState("")
   const [airportCodeDestination, setAirportCodeDestination]= useState("")
-  const [error, setError] = useState('');   /* a state to save all of the errors */
-  const [isLoading , setIsloading] = useState(false)
+  const [results, setResults]= useState("")
+  const [error, setError] = useState("");   
+  const [isLoading , setIsLoading] = useState(false)
 
   const handleChange = (event)=>{
-    const value = event.target.value;
-    if (event.target.id === 'cityOrigin') {
-      setCityOrigin(value);
-    } else if (event.target.id === 'cityDestination') {
-      setCityDestination(value);
-    }
+    const {id, value} = event.target;
+        setFlightParameters({...flightParameters,[id]: value});
+
+        if (id === "cityOrigin") {
+          setCityOrigin(value)
+          } else if (id === "cityDestination") {
+            setCityDestination(value);
+        }
+
   };
 
-const handleSubmit = (event)=>{
+  const handleRadioChange = (e) => {
+    setFlightParameters({
+      ...flightParameters,
+    itineraryType: e.target.value
+    });
+  };
+
+const handleSubmit = async (event)=>{
   event.preventDefault();
-  setIsloading(true);
+  setIsLoading(true);
+  setFlightParameters(EMPTY_FORM)
   setAirportCodeOrigin("");
   setAirportCodeDestination("");
-  setError("");
-
-  // Fetch for cityOrigin
-  const originUrl = `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchAirport?query=${cityOrigin}`;
-  const originOptions = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '6eafd6dacamsh9595106e7e22e75p1d3894jsn14bcd3ec4338',
-      'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
-    },
-  };
-   searchAirport(originUrl, 'cityOrigin', originOptions);
-   setCityOrigin('');
-
-
-   // Fetch for cityDestination
-   const destinationUrl = `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchAirport?query=${cityDestination}`;
-   const destinationOptions = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '6eafd6dacamsh9595106e7e22e75p1d3894jsn14bcd3ec4338',
-      'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
-    },
-  };
-  /* params: {query: `${cityName}`},  when I had the same URL for both*/ 
-  searchAirport(destinationUrl, 'cityDestination', destinationOptions);
-
+  setResults("")
+  setError(""); 
   
-  setCityDestination("");
-};
+  const originUrl = `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchAirport?query=${cityOrigin}`;
+  const destinationUrl = `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchAirport?query=${cityDestination}`;
+  const ticketUrl = `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=${airportCodeOrigin}&destinationAirportCode=${airportCodeDestination}&date=${flightParameters.outboundDate}&itineraryType=${flightParameters.itineraryType}&sortOrder=ML_BEST_VALUE&numAdults=${flightParameters.numAdults}&numSeniors=0&classOfService=ECONOMY${flightParameters.itineraryType === 'ROUND_TRIP' ? `&returnDate=${flightParameters.returnDate}` : ''}&pageNumber=1&currencyCode=USD`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'X-RapidAPI-Key': `d85fe120cdmsh6cffb70251d5d1cp16f3d1jsn7328646e0be7`,
+      'X-RapidAPI-Host': `tripadvisor16.p.rapidapi.com`
+    },
+  };
+
+
+  try {
+  // Wait for both fetch operations to complete
+  const [airportCodeOrigin, airportCodeDestination] = await Promise.all([
+    searchAirport(originUrl, "cityOrigin", options),
+    searchAirport(destinationUrl, "cityDestination", options)
+  ]);
+
+  console.log(options);
+  console.log("Origin Airport Code:", airportCodeOrigin);
+  console.log("Destination Airport Code:", airportCodeDestination);
+
+
+ // Perform the new fetch using the obtained airport codes
+
+
+console.log(ticketUrl)
+
+const ticketResponse = await fetch(ticketUrl, options);
+
+        if (!ticketResponse.ok) {
+            throw new Error('Failed to fetch flight search data');
+        }
+
+        const result = await ticketResponse.json();
+        setResults(result);
+        setIsLoading(false);
+        console.log(result);
+        
+
+    } catch (error) {
+        setIsLoading(false);
+        setError(`Something went wrong: ${error.message}`);
+        console.error(error);
+    }
+  };
 
 
 async function searchAirport(url, cityId, options) { /* this cityId, it´s just a variable I can call it anything I want*/
- 
+  const [airportCode, setAirportCode] = useState('');
+
+useEffect(() => {
+  const fetchAirportData = async () => {
+      setIsLoading(true);
   try {
     const response = await fetch(url, options);   
-    
     if(!response.ok){
       //when you throw an error you will go to the catch block
-      throw new Error()
+      throw new Error("failed to fetch airport data")
     }
-    
-    const data = await response.json();  /* !!!!!!!! */
+    const responseData= await response.json();  /* !!!!!!!! */
     // Log the cityId and data for debugging
-    console.log(`City ID: ${cityId}`, data);
+    console.log(`City ID: ${cityId}`, responseData);
 
-    setIsloading(false) 
-
+    if (!responseData.data || responseData.data.length === 0) {
+      throw new Error('No airport data found');
+    }
 // Extract the airportCode from the nested structure
 /* const newAirportCode = data.data[0]?.airportCode || '';  */ /* The optional chaining (?.) is used to handle cases where data or data[0] might be null or undefined.
 || '':  if newAirportCode is undefined (due to optional chaining) or if the extracted airportCode is falsy, it will default to an empty string (''). */
 
-  if (cityId === 'cityOrigin') {
-    setAirportCodeOrigin([data.data[0]?.children[0]?.airportCode ?? data.data[0]?.airportCode]); /* double data, cause I call the WHOLE THING data  !!!!! */
-  } else if (cityId === 'cityDestination') {
-    setAirportCodeDestination([data.data[0]?.children[0]?.airportCode ?? data.data[0]?.airportCode]);
-  }
-   
-  } catch (err) {
-    setIsloading(false) 
-    setError(`something went wrong: ${err}`)
-    console.error(error);
-  } }
+    let extractedAirportCode;
+    if (responseData.data[0]?.children && responseData.data[0]?.children[0]?.airportCode) {
+      extractedAirportCode = responseData.data[0].children[0].airportCode;
+    } else {
+      extractedAirportCode = responseData.data[0]?.airportCode;
+    } 
+    if(!extractedAirportCode){
+      throw new Error('Airport code not found in response');
+    }
 
+    setAirportCode(extractedAirportCode);
+    console.log('Airport Code Origin:', airportCode)
+ 
+
+  } catch (err) {
+    setError(`Failed to fetch airport data for ${cityId}: ${err.message}`) // superimportante to see the error for debugging !!!
+    console.error(err);  // superimportante
+    throw err;   // superimportante !!
+  } 
+  setIsLoading(false) 
+}
+fetchAirportData();
+    }, [url, options, cityId]);
+
+    { isLoading, airportCode, error };
+  }
 
   return (
     <>  {/* here I can put just tags, not necessarily a <div> </div> */}
    {/*   here the form is one single parent, it doesn´t always have to be a <div></div>  */}
     <form onSubmit={handleSubmit}>
-      <label htmlFor="city">Where from</label>
-      <input id="cityOrigin"   /* each input should have a unique id, cause the id attribute should be unique within the HTML document, even if the values are the same. */
-              type='text'
-              placeholder='Type city of origin...'
-              value = {airportCodeOrigin || cityOrigin}
-              onChange = {handleChange} />
-      <label htmlFor="city">Where to</label>
-      <input id="cityDestination"   
-      type='text'
-      placeholder='Type city of destination...'
-      value = {airportCodeDestination || cityDestination}
-      onChange = {handleChange} />
+      
+       <div>
+        <label htmlFor="itineraryTypeOneWay">One Way</label>
+        <input
+          id="itineraryTypeOneWay"
+          type="radio"
+          name="itineraryType"
+          value="ONE_WAY"
+          checked={flightParameters.itineraryType === 'ONE_WAY'}
+          onChange={handleRadioChange}
+        />
+       <label htmlFor="itineraryTypeRoundTrip">Round Trip</label>
+       <input
+          id="itineraryTypeRoundTrip"
+          type="radio"
+          name="itineraryType"
+          value="ROUND_TRIP"
+          checked={flightParameters.itineraryType === 'ROUND_TRIP'}
+          onChange={handleRadioChange}
+        />
+      </div> 
+
+      <label htmlFor='numAdults'>Passengers</label> 
+      <input
+          id='numAdults'
+          type='number'
+          placeholder= "number of passengers"
+          value={flightParameters.numAdults}
+          onChange={handleChange}/>
+
+      
+      <label htmlFor="cityOrigin">Where from</label>
+      <input 
+          id="cityOrigin"   /* each input should have a unique id, cause the id attribute should be unique within the HTML document, even if the values are the same. */
+          name="cityOrigin"
+          type='text'
+          placeholder='Type city of origin...'
+          value = {cityOrigin}
+          onChange = {handleChange} />
+
+      <label htmlFor="cityDestination">Where to</label>
+      <input 
+          id="cityDestination"  
+          name="cityDestination" 
+          type='text'
+          placeholder='Type city of destination...'
+          value = {cityDestination}
+          onChange = {handleChange} />
+
+
+      <label htmlFor="outboundDate">Outbound</label>
+      <input 
+        id="outboundDate"
+        type="date"
+        placeholder="YYYY-MM-DD"
+        value={flightParameters.outboundDate}
+        onChange={handleChange}/>
+      
+      {flightParameters.itineraryType === 'ROUND_TRIP' && (
+      <div>
+        <label htmlFor="returnDate">Return</label>
+        <input
+          id="returnDate"
+          type="date"
+          placeholder="YYYY-MM-DD"
+          value={flightParameters.returnDate}
+          onChange={handleChange}
+        />
+      </div>
+      )}
+     
       <button type='submit'>Search</button>
+
     </form>
+
+    {/* Flight search results */}
+    {results && (
+      <div>
+        {results.flights.map(flight => (
+  <div key={flight.id}>
+    <p>Flight Number: {flight.flightNumber}</p>
+    <p>Departure: {flight.departureTime}</p>
+    <p>Arrival: {flight.arrivalTime}</p>
+    <p>Price: {flight.price}</p>
+  </div>
+))}
+      </div>
+    )}
     </>
   )
-}
+      }

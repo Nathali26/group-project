@@ -6,10 +6,9 @@ import HomePage from './components/HomePage';
 import samplelogo from './images/samplelogo.png';
 import Hotels from './components/Hotels';
 import Favourites from './components/Favourites';
-import Flights from './components/Flights';
+import Flights from "./components/Flights";
 import Attractions from './components/Attractions'
 import Restaurants from './components/Restaurants'
-import FlightDetailsComponent from './components/FlightDetailsComponent';
 
 
 function App() {
@@ -64,7 +63,6 @@ function App() {
           <Route path="/Restaurants" element={<Restaurants />} />
         </Routes>
       </div>
-      <FlightDetailsComponent getFlightDetailsCb= {(flightParameters) => getFlightParameters(flightParameters)}/>
     </>
   );
 }
