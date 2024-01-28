@@ -31,10 +31,10 @@ export default function HomePage() {
         <Link to = "/Restaurants"><button>Restaurants</button></Link>
         <Routes>
           <Route path="/Hotels" element={<Hotels />} />
-          <Route path="/Flights" element={<Flights />} />
+          <Route path="/Flights" element={<Flights />} /> 
           {/* <Route path = "/Attractions" element = {<Attractions />}/>
           <Route path = "/Restaurants" element = {<Restaurants />}/> */}
-        </Routes>
+       </Routes> 
       </div>
     </div>
   );
