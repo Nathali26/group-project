@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Hotels.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,7 +41,7 @@ export default function App() {
           headers: {
             "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
             "X-RapidAPI-Key":
-              "0c1ec7c873msh14f30084fdd46dcp1a4aaejsnaf3c1fa88581",
+            "c7a075516cmsh8251f79600f7f70p1bd29ajsn386c966d5b91",
             "Content-Type": "application/json",
           },
         }
@@ -75,7 +75,7 @@ export default function App() {
             headers: {
               "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
               "X-RapidAPI-Key":
-                "0c1ec7c873msh14f30084fdd46dcp1a4aaejsnaf3c1fa88581",
+              "c7a075516cmsh8251f79600f7f70p1bd29ajsn386c966d5b91",
               "Content-Type": "application/json",
             },
           });
