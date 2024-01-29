@@ -13,7 +13,7 @@ const con = mysql.createConnection({
   user: DB_USER || "root",
   password: DB_PASS,
   database: DB_NAME || "group_project", 
-  multipleStatements: true
+  multipleStatements: true,
 });
 
 con.connect(function(err) {
