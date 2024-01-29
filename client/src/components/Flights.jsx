@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import "./Flights.css";
+/* import FlightResults from "./Results"; */
 
 export default function Flights() {
   //I set the backgrounds here because I was having trouble setting different backgrounds for different components
@@ -94,7 +95,7 @@ export default function Flights() {
         flightParameters.outboundDate
       }&itineraryType=${
         flightParameters.itineraryType
-      }&sortOrder=ML_BEST_VALUE&numAdults=${
+      }&sortOrder=DURATION&numAdults=${
         flightParameters.numAdults
       }&numSeniors=0&classOfService=ECONOMY${
         flightParameters.itineraryType === "ROUND_TRIP"
@@ -248,12 +249,31 @@ export default function Flights() {
 
         <button type="submit">Search</button>
       </form>
-      {/* Flight search results */}
       {results && (
         <div>
-          <h2>{results.data.flights.length} flights found</h2>
+          <h2>Flight Search Results</h2>
+          {/* Render the flight search results here */}
+          {results.data.flights.map((flight, index) => (
+            <div key={index}>
+              <p>Flight {index + 1}</p>
+              {/* Map over each segment within the flight */}
+              {flight.segments.map((segment, segmentIndex) => (
+                <div key={segmentIndex}>
+                  {/* Display details for each segment */}
+                  <p>Departure: {segment.legs[0].departureDateTime}</p>
+                  <p>Arrival: {segment.legs[0].arrivalDateTime}</p>
+                  <p>Airline: {segment.legs[0].marketingCarrier.displayName}</p>
+                  {/* Add more details as needed */}
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
       )}
+      {/* Error message if there's an error */}
+      {error && <p>{error}</p>}
+      {/* Loading indicator */}
+      {isLoading && <p>Loading...</p>}
     </>
   );
 }
