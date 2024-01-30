@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import './Hotels.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons"; // Import the heart icon for favourites
 
-export default function App() {
+export default function Hotels() {
   const [hotels, setHotels] = useState([]);
   const [consult, setConsult] = useState("");
   const [checkIn, setCheckIn] = useState("");
@@ -41,7 +41,7 @@ export default function App() {
           headers: {
             "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
             "X-RapidAPI-Key":
-              "0c1ec7c873msh14f30084fdd46dcp1a4aaejsnaf3c1fa88581",
+              "985c154b91mshdc61865d46ab26bp1fedaajsn6639de3436ad",
             "Content-Type": "application/json",
           },
         }
@@ -75,7 +75,7 @@ export default function App() {
             headers: {
               "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
               "X-RapidAPI-Key":
-                "0c1ec7c873msh14f30084fdd46dcp1a4aaejsnaf3c1fa88581",
+                "985c154b91mshdc61865d46ab26bp1fedaajsn6639de3436ad",
               "Content-Type": "application/json",
             },
           });
@@ -174,6 +174,12 @@ export default function App() {
             >
               Book Now
             </a>
+            <button 
+              onClick={() => handleAddToFavourites(hotel)}
+              className="favourite-btn"
+            >
+              <FontAwesomeIcon icon={faHeart} /> {/* Heart icon */}
+            </button>
           </div>
         ))}
       </div>

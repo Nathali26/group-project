@@ -7,7 +7,6 @@ import samplelogo from './images/samplelogo.png';
 import Hotels from './components/Hotels';
 import Favourites from './components/Favourites';
 import Flights from "./components/Flights";
-import Attractions from './components/Attractions'
 import Restaurants from './components/Restaurants'
 
 
@@ -56,10 +55,9 @@ function App() {
         <Routes>
           <Route path="*" element={<HomePage />} />
           {/* <Route path="/Login" element={<Login />} /> */}
-          <Route path="/hotels" element={<Hotels />} />
+          <Route path="/Hotels" element={<Hotels />} />
           <Route path="/Favourites" element={<Favourites />} />
           <Route path="/Flights" element={<Flights />} />
-          <Route path="/Attractions" element={<Attractions />} />
           <Route path="/Restaurants" element={<Restaurants />} />
         </Routes>
       </div>
