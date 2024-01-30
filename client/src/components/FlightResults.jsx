@@ -1,6 +1,26 @@
 import React from "react";
+import axios from 'axios';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons"; // Import the heart icon for favourites
 
 export default function FlightResults({ results }) {
+  const handleAddToFavourites = async (segment) => {
+    const flightDetails = {
+      title: `Flight: ${segment.legs[0].originStationCode} to ${segment.legs[0].destinationStationCode}`,
+      departure: segment.legs[0].departureDateTime,
+      arrival: segment.legs[0].arrivalDateTime,
+      airline: segment.legs[0].marketingCarrier.displayName,
+      // Add other details as needed
+    };
+
+    try {
+      await axios.post("http://localhost:4000/api/favourites_list", flightDetails);
+      console.log("Flight added to favourites successfully");
+    } catch (err) {
+      console.error("Error adding to favourites:", err);
+    }
+  };
+
   return (
     <div>
       {results && (
@@ -44,7 +64,10 @@ export default function FlightResults({ results }) {
                         <button onClick={() => addCb(segment.legs[0].id)}>
                           add
                         </button>
-                        {/* Add more details as needed */}
+                        <button onClick={() => handleAddToFavourites(segment)}
+                          className="favourite-btn">
+                        <FontAwesomeIcon icon={faHeart} />
+                        </button>
                       </div>
                     </div>
                   ) : null

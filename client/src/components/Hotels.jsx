@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import './Hotels.css';
+import "./Hotels.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons"; // Import the heart icon for favourites
 
@@ -13,15 +13,16 @@ export default function App() {
 
   useEffect(() => {
     // Set the background image when the component mounts
-    document.body.style.backgroundImage = 'url("https://images.unsplash.com/photo-1600435335786-d74d2bb6de37?q=80&w=2060&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")';
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.backgroundImage =
+      'url("https://images.unsplash.com/photo-1600435335786-d74d2bb6de37?q=80&w=2060&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")';
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundAttachment = "fixed";
 
     // Cleanup function to reset the background when the component unmounts
     return () => {
-      document.body.style.backgroundImage = '';
-      document.body.style.backgroundSize = '';
-      document.body.style.backgroundAttachment = '';
+      document.body.style.backgroundImage = "";
+      document.body.style.backgroundSize = "";
+      document.body.style.backgroundAttachment = "";
     };
   }, []);
 
@@ -29,7 +30,6 @@ export default function App() {
     try {
       const formattedCheckIn = new Date(checkIn).toISOString().split("T")[0];
       const formattedCheckOut = new Date(checkOut).toISOString().split("T")[0];
-
 
       const locationResponse = await axios.get(
         "https://tripadvisor16.p.rapidapi.com/api/v1/hotels/searchLocation",
@@ -41,24 +41,21 @@ export default function App() {
           headers: {
             "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
             "X-RapidAPI-Key":
-            "c7a075516cmsh8251f79600f7f70p1bd29ajsn386c966d5b91",
+              "985c154b91mshdc61865d46ab26bp1fedaajsn6639de3436ad",
+            "Content-Type": "application/json",
             "Content-Type": "application/json",
           },
         }
       );
-
 
       if (
         locationResponse.data &&
         locationResponse.data.data &&
         locationResponse.data.data.length > 0
       ) {
-        
-         const firstGeoId = locationResponse?.data?.data?.[0]?.geoId || null;
+        const firstGeoId = locationResponse?.data?.data?.[0]?.geoId || null;
 
-
-
-          console.log("el firstgeoId es este=" ,firstGeoId)
+        console.log("el firstgeoId es este=", firstGeoId);
 
         if (firstGeoId) {
           const hotelApiUrl =
@@ -75,7 +72,8 @@ export default function App() {
             headers: {
               "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
               "X-RapidAPI-Key":
-              "c7a075516cmsh8251f79600f7f70p1bd29ajsn386c966d5b91",
+                "985c154b91mshdc61865d46ab26bp1fedaajsn6639de3436ad",
+              "Content-Type": "application/json",
               "Content-Type": "application/json",
             },
           });
@@ -120,14 +118,30 @@ export default function App() {
     }
   };
 
-  return (
+  const handleAddToFavourites = async (hotel) => {
+    try {
+      await axios.post("http://localhost:4000/api/favourites_list", {
+        title: hotel.title,
+        rating: hotel.rating,
+        provider: hotel.provider,
+        price: hotel.price,
+        originalPrice: hotel.originalPrice,
+        externalUrl: hotel.externalUrl,
+      });
+      console.log("Hotel added to favourites successfully");
+    } catch (err) {
+      console.error("Error adding to favourites:", err);
+    }
+  };
 
+  return (
     <div>
       <h1>Hotel List: </h1>
 
-
       <form className="form">
-        <label className="label" htmlFor="query">Location:</label>
+        <label className="label" htmlFor="query">
+          Location:
+        </label>
         <input
           type="text"
           id="query"
@@ -136,7 +150,9 @@ export default function App() {
           onChange={(e) => setConsult(e.target.value)}
         />
 
-        <label className="label" htmlFor="checkIn">Check-in:</label>
+        <label className="label" htmlFor="checkIn">
+          Check-in:
+        </label>
         <input
           type="date"
           id="checkIn"
@@ -145,7 +161,9 @@ export default function App() {
           onChange={(e) => setCheckIn(e.target.value)}
         />
 
-        <label className="label" htmlFor="checkOut">Check-out:</label>
+        <label className="label" htmlFor="checkOut">
+          Check-out:
+        </label>
         <input
           type="date"
           id="checkOut"
@@ -153,7 +171,11 @@ export default function App() {
           value={checkOut}
           onChange={(e) => setCheckOut(e.target.value)}
         />
-        <button className="search-btn" type="button" onClick={handleSearchHotels}>
+        <button
+          className="search-btn"
+          type="button"
+          onClick={handleSearchHotels}
+        >
           Search Hotels
         </button>
       </form>
@@ -174,6 +196,12 @@ export default function App() {
             >
               Book Now
             </a>
+            <button
+              onClick={() => handleAddToFavourites(hotel)}
+              className="favourite-btn"
+            >
+              <FontAwesomeIcon icon={faHeart} />
+            </button>
           </div>
         ))}
       </div>

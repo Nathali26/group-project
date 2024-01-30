@@ -15,5 +15,5 @@ CREATE TABLE favourites_list (
   provider VARCHAR(255),
   price VARCHAR(255),
   originalPrice VARCHAR(255),
-  externalUrl VARCHAR(255)
+  externalUrl VARCHAR(4000)
 );
