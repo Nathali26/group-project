@@ -21,20 +21,24 @@ router.get("/favourites_list", async (req, res) => {
 
   //Add a new favourite
   router.post("/favourites_list", async (req, res) => {
-    const { title, rating, provider, price, originalPrice, externalUrl } = req.body;
-    const sql = `INSERT INTO favourites_list (title, rating, provider, price, originalPrice, externalUrl) 
-                 VALUES (?, ?, ?, ?, ?, ?)`;
+    const { title, departure, arrival, airline, rating, provider, price, originalPrice, externalUrl } = req.body;
   
-    try {
-      const params = [title, rating, provider, price, originalPrice, externalUrl];
-      await db(sql, params);
-      let result = await db("SELECT * FROM favourites_list");
-      res.status(200).send(result.data);
-    } catch (err) {
-      console.log("Error creating new favourite:", err);
-      res.status(500).send({ error: err.message });
-    }
-  });  
+  // SQL query to handle both flights and hotels
+  const sql = `
+    INSERT INTO favourites_list (title, departure, arrival, airline, rating, provider, price, originalPrice, externalUrl)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+  `;
+
+  try {
+    const params = [title, departure, arrival, airline, rating, provider, price, originalPrice, externalUrl];
+    await db(sql, params);
+    let result = await db("SELECT * FROM favourites_list");
+    res.status(200).send(result.data); // Return updated list
+  } catch (err) {
+    console.log("Error creating new favourite:", err);
+    res.status(500).send({ error: err.message });
+  }
+});
 
   // Remove a favourite
   router.delete("/:id", async (req, res) => {
