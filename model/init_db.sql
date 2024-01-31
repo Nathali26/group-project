@@ -7,9 +7,18 @@ CREATE TABLE users (
 	PRIMARY KEY (id)
 );
 
--- DROP TABLE IF EXISTS favourites; 
+DROP TABLE IF EXISTS favourites_list;
 
--- CREATE TABLE favourites (
--- 	id INT NOT NULL AUTO_INCREMENT, 
--- 	location VARCHAR(255) NOT NULL, 
--- );
+CREATE TABLE favourites_list (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255),
+  departure DATETIME,
+  arrival DATETIME,
+  airline VARCHAR(255),
+  rating FLOAT,
+  provider VARCHAR(255),
+  price VARCHAR(255),
+  originalPrice VARCHAR(255),
+  externalUrl TEXT
+);
+

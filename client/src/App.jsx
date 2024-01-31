@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import './App.css';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import Login from './components/Login';
-import samplelogo from './images/samplelogo.png';
-import Hotels from './components/Hotels';
-import Favourites from './components/Favourites';
-import Flights from './components/Flights';
-import Attractions from './components/Attractions'
+import React, { useState } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import Login from "./components/Login";
+import samplelogo from "./images/samplelogo.png";
+import appname2 from "./images/appname2.png";
+import Hotels from "./components/Hotels";
+import Favourites from "./components/Favourites";
+import Flights from "./components/Flights";
+import Restaurants from "./components/Restaurants";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,8 +17,8 @@ function App() {
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
         <div className="container-fluid">
-          {/* <Link className="navbar-brand" to="/">Need a Name</Link> */}
           <img src={samplelogo} alt="Logo" width="108" height="98" />
+          <img src={appname2} alt="Name" width="180" height="50" /> {/* Adjust the size as needed */}
           <button
             className="navbar-toggler"
             type="button"
@@ -30,7 +31,7 @@ function App() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <Link className="nav-link active" aria-current="page" to="/">
                   Home
@@ -57,7 +58,7 @@ function App() {
           <Route path="/hotels" element={<Hotels />} />
           <Route path="/Favourites" element={<Favourites />} />
           <Route path="/Flights" element={<Flights />} />
-          <Route path="/Attractions" element={<Attractions />} />
+          <Route path="/Restaurants" element={<Restaurants />} />
         </Routes>
       </div>
     </>
