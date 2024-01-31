@@ -1,11 +1,11 @@
-import React, { useState,useEffect } from 'react';
-import { auth, googleProvider } from '../firebase';
-import { login } from '../firebase';
+import React, { useState, useEffect } from "react";
+import { auth, googleProvider } from "../firebase";
+import { login } from "../firebase";
 
 const Login = () => {
   const [user, setUser] = useState(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     // Add an authentication state observer
