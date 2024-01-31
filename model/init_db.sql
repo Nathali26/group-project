@@ -7,4 +7,9 @@ CREATE TABLE users (
 	PRIMARY KEY (id)
 );
 
+-- DROP TABLE IF EXISTS favourites; 
 
+-- CREATE TABLE favourites (
+-- 	id INT NOT NULL AUTO_INCREMENT, 
+-- 	location VARCHAR(255) NOT NULL, 
+-- );
