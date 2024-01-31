@@ -41,7 +41,7 @@ router.get("/favourites_list", async (req, res) => {
 });
 
   // Remove a favourite
-  router.delete("/:id", async (req, res) => {
+  router.delete("/favourites_list/:id", async (req, res) => {
     let favouriteID = req.params.id;
     console.log("Attempting to delete favourite with ID:", favouriteID);
     try {
