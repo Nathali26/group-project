@@ -1,4 +1,4 @@
-import firebase from 'firebase/compat/login';
+import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 
 const firebaseConfig = {
@@ -12,7 +12,7 @@ const firebaseConfig = {
     measurementId: "G-4JSS8Q6FYP"
   };
 
-let login = firebase.initializeLogin(firebaseConfig);
+let login = firebase.initializeApp(firebaseConfig);
   
   export const auth = firebase.auth();
   export const googleProvider = new firebase.auth.GoogleAuthProvider();
