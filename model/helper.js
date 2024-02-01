@@ -17,7 +17,7 @@ module.exports = async function db(query, params = []) {
       user: DB_USER || "root",
       password: DB_PASS,
       database: DB_NAME || "database", 
-      multipleStatements: true,
+      multipleStatements: true
     });
 
 

@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "group-project"
+
+    "default": "the-group-project"
+
   }
 }
