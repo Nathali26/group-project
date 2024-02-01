@@ -45,28 +45,48 @@ export default function Favourites() {
     }
   };
 
+  // Function to determine if a favourite item is a flight, determines how to display it
+  const isFlight = (fav) => {
+    return fav.departure && fav.arrival && fav.airline;
+  };
+
   return (
-    <div className="my-favs-container">
+    <div className="my-favs-container mt-5">
       <h1 className="my-favs-title">My Favourites</h1>
-      {console.log(favourites)};
       <div className="my-favs-list">
         {favourites.map((fav) => (
-          <div key={fav.id} className="fav-item">
-            <h3>{fav.title}</h3>
-            {fav.name}
-            <p>Rating: {fav.rating}</p>
-            <p>Provider: {fav.provider}</p>
-            <p>Price: {fav.price}</p>
-            {fav.originalPrice && <p>Original Price: {fav.originalPrice}</p>}
-            <button
-              className="delete-button"
-              onClick={() => handleDelete(fav.id)}
-            >
-              <FontAwesomeIcon icon={faTrash} /> {/* Display trashcan icon */}
-            </button>
+          <div key={fav.id} className="card mb-3" style={{width: "18rem"}}>
+            <div className="card-body">
+              <h5 className="card-title">{fav.title}</h5>
+              {isFlight(fav) ? (
+                // Render flight information
+                <>
+                  <p className="card-text">Departure: {fav.departure}</p>
+                  <p className="card-text">Arrival: {fav.arrival}</p>
+                  <p className="card-text">Airline: {fav.airline}</p>
+                </>
+              ) : (
+                // Render hotel information
+                <>
+                  <p className="card-text">Rating: {fav.rating}</p>
+                  <p className="card-text">Provider: {fav.provider}</p>
+                </>
+              )}
+              <p className="card-text">Price: {fav.price}</p>
+              {fav.originalPrice && <p className="card-text">Original Price: {fav.originalPrice}</p>}
+            </div>
+            <div className="card-footer">
+              <button
+                className="btn btn-danger"
+                onClick={() => handleDelete(fav.id)}
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </button>
+            </div>
           </div>
         ))}
       </div>
     </div>
   );
 }
+
