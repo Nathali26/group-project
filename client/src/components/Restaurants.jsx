@@ -95,7 +95,7 @@ export default function Restaurants() {
   return (
     <div>
     <div className="restaurants-bg">
-      <h1>Where would you like to eat?</h1>
+      <h1 className="restaurants">Where would you like to eat?</h1>
       <div>
         {restaurants.map((restaurant, index) => (
           <div key={index} className="restaurant-card">

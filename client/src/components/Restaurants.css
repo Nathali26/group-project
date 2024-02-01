@@ -1,8 +1,10 @@
 .restaurants-bg {
     background-color: #f7f7f7;
-    padding: 20px;
+    padding: 100px;
   }
-  
+.restaurants{
+padding-top:20px;
+  }
   .restaurant-card {
     border: 1px solid #ddd;
     border-radius: 5px;
