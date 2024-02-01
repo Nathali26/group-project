@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { auth } from "./firebase"; // Ensure this path is correct
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import HomePage from "./components/HomePage";
@@ -12,6 +13,23 @@ import Restaurants from "./components/Restaurants";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <>
@@ -43,10 +61,16 @@ function App() {
                 </Link>
               </li>
               <li className="nav-item">
+              {user ? (
+                <Link className="nav-link" to="/" onClick={handleSignOut}>
+                  Sign out
+                </Link>
+              ) : (
                 <Link className="nav-link" to="/Login">
                   Sign in
                 </Link>
-              </li>
+              )}
+             </li>
             </ul>
           </div>
         </div>

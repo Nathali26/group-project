@@ -73,7 +73,7 @@ export default function Flights() {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": `52f456776emsh373fb71559d80c8p193cc0jsnb861ec37df67`,
+        "X-RapidAPI-Key": `985c154b91mshdc61865d46ab26bp1fedaajsn6639de3436ad`,
         "X-RapidAPI-Host": `tripadvisor16.p.rapidapi.com`,
       },
     };
