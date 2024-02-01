@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth, googleProvider } from "../firebase";
 import { login } from "../firebase";
+import "./Login.css";
 
 const Login = () => {
   const [user, setUser] = useState(null);
