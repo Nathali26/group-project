@@ -41,7 +41,7 @@ export default function App() {
           headers: {
             "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
             "X-RapidAPI-Key":
-            "c7a075516cmsh8251f79600f7f70p1bd29ajsn386c966d5b91",
+            "593a26352cmsha2f8cbf6fd0cc89p14919djsn5a1d27b6cebd",
             "Content-Type": "application/json",
           },
         }
@@ -75,7 +75,7 @@ export default function App() {
             headers: {
               "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
               "X-RapidAPI-Key":
-              "c7a075516cmsh8251f79600f7f70p1bd29ajsn386c966d5b91",
+              "593a26352cmsha2f8cbf6fd0cc89p14919djsn5a1d27b6cebd",
               "Content-Type": "application/json",
             },
           });
@@ -87,24 +87,23 @@ export default function App() {
             Array.isArray(hotelResponse.data.data.data)
           ) {
             const hotelData = hotelResponse.data.data.data;
-
             if (hotelData.length > 0) {
+  
               const formattedHotels = hotelData.map((hotel) => ({
                 id: hotel.id,
                 title: hotel.title,
                 rating: hotel.bubbleRating?.rating || null,
                 provider: hotel.provider,
-                price: hotel.priceForDisplay?.text || null,
-                originalPrice: hotel.strikethroughPrice?.text || null,
+                price: hotel.priceForDisplay,
                 externalUrl: hotel.commerceInfo?.externalUrl || null,
               }));
 
-              setHotels(formattedHotels);
-              console.log("Complete Hotel Response:", hotelResponse);
-              console.log("Hotel Details:", formattedHotels);
-            } else {
-              console.error("No hotels found in the response");
-            }
+            setHotels(formattedHotels);
+            console.log("Complete Hotel Response:", hotelResponse);
+            console.log("Hotel Details:", formattedHotels);
+          } else {
+            console.error("No hotels found in the response");
+          }
           } else {
             console.error("Invalid response structure:", hotelResponse.data);
           }
@@ -121,13 +120,13 @@ export default function App() {
   };
 
   return (
-
     <div>
       <h1>Hotel List: </h1>
 
-
       <form className="form">
-        <label className="label" htmlFor="query">Location:</label>
+        <label className="label" htmlFor="query">
+          Location:
+        </label>
         <input
           type="text"
           id="query"
@@ -136,7 +135,9 @@ export default function App() {
           onChange={(e) => setConsult(e.target.value)}
         />
 
-        <label className="label" htmlFor="checkIn">Check-in:</label>
+        <label className="label" htmlFor="checkIn">
+          Check-in:
+        </label>
         <input
           type="date"
           id="checkIn"
@@ -145,7 +146,9 @@ export default function App() {
           onChange={(e) => setCheckIn(e.target.value)}
         />
 
-        <label className="label" htmlFor="checkOut">Check-out:</label>
+        <label className="label" htmlFor="checkOut">
+          Check-out:
+        </label>
         <input
           type="date"
           id="checkOut"
@@ -153,31 +156,52 @@ export default function App() {
           value={checkOut}
           onChange={(e) => setCheckOut(e.target.value)}
         />
-        <button className="search-btn" type="button" onClick={handleSearchHotels}>
+        <button
+          className="search-btn"
+          type="button"
+          onClick={handleSearchHotels}
+        >
           Search Hotels
         </button>
       </form>
-      <div>
+      <div
+        style={{
+        
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          minHeight: "100vh",
+          padding: "20px",
+        }}
+      >
         {hotels.map((hotel, index) => (
-          <div key={index} className="hotel-card">
-            <h3>{hotel.title}</h3>
-            <p>Rating: {hotel.rating}</p>
-            <p>Provider: {hotel.provider}</p>
-            <p>Price: {hotel.price}</p>
-            {hotel.originalPrice && (
-              <p>Original Price: {hotel.originalPrice}</p>
-            )}
-            <a
-              href={hotel.externalUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Book Now
-            </a>
+          <div
+            key={index}
+            className="card"
+            style={{ width: "18rem", marginBottom: "20px" }}
+          >
+            <div className="card-body" style={{ color: "#000000" }}>
+              <h5 className="card-title">{hotel.title}</h5>
+              <p className="card-text">Rating: {hotel.rating}</p>
+              <p className="card-text">Provider: {hotel.provider}</p>
+              <p className="card-text">Price: {hotel.price}</p>
+              <a
+                href={hotel.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+                style={{
+                  backgroundColor: "#132743",
+                  color: "#ffffff",
+                  cursor: "pointer",
+                }}
+              >
+                Book Now
+              </a>
+            </div>
           </div>
         ))}
       </div>
-      {error && <p>{error}</p>}
     </div>
   );
 }

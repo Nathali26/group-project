@@ -73,10 +73,10 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button onClick={handleEmailSignUp}>
-            Sign Up with Email/Password
+            Register
           </button>
           <button onClick={handleEmailSignIn}>
-            Sign In with Email/Password
+            Sign In
           </button>
           <button onClick={handleGoogleSignIn}>Sign In with Google</button>
         </div>

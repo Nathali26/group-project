@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import HomePage from './components/HomePage';
-/* import Login from './components/Login'; */
+import Login from './components/Login'; 
 import samplelogo from './images/samplelogo.png';
 import Hotels from './components/Hotels';
 import Favourites from './components/Favourites';
@@ -55,7 +55,7 @@ function App() {
       <div>
         <Routes>
           <Route path="*" element={<HomePage />} />
-          {/* <Route path="/Login" element={<Login />} /> */}
+          <Route path="/Login" element={<Login />} />
           <Route path="/hotels" element={<Hotels />} />
           <Route path="/Favourites" element={<Favourites />} />
           <Route path="/Flights" element={<Flights />} />
