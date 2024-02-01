@@ -15,6 +15,8 @@ export default function Favourites() {
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundAttachment = "fixed";
 
+    fetchFavourites();
+
     // Cleanup function to reset the background when the component unmounts
     return () => {
       document.body.style.backgroundImage = "";
@@ -22,7 +24,6 @@ export default function Favourites() {
       document.body.style.backgroundAttachment = "";
     };
 
-    fetchFavourites();
   }, []); // Fetch favourites on component mount
 
   const fetchFavourites = async () => {
@@ -47,6 +48,7 @@ export default function Favourites() {
   return (
     <div className="my-favs-container">
       <h1 className="my-favs-title">My Favourites</h1>
+      {console.log(favourites)};
       <div className="my-favs-list">
         {favourites.map((fav) => (
           <div key={fav.id} className="fav-item">
