@@ -1,0 +1,60 @@
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .input-group {
+    margin-bottom: 10px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .button-group button {
+    width: 48%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button-group button.register {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .button-group button.login {
+    background-color: #2196f3;
+    color: white;
+  }
+  
+  .button-group button.google {
+    background-color: #dd4b39;
+    color: white;
+  }
+  
+  .button-group button.logout {
+    background-color: #f44336;
+    color: black;
+  }
+  
