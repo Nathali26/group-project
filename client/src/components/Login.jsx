@@ -73,9 +73,11 @@ const Login = () => {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
+
           <button onClick={handleEmailSignUp}>Register</button>
           <button onClick={handleEmailSignIn}>Sign In </button>
           OR
+
           <button onClick={handleGoogleSignIn}>Sign In with Google</button>
         </div>
       )}
