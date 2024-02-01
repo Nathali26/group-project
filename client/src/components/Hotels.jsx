@@ -41,10 +41,9 @@ export default function App() {
           headers: {
             "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
             "X-RapidAPI-Key":
-
-            "593a26352cmsha2f8cbf6fd0cc89p14919djsn5a1d27b6cebd",
-
+              "52f456776emsh373fb71559d80c8p193cc0jsnb861ec37df67",
             "Content-Type": "application/json",
+            /* "Content-Type": "application/json", */
           },
         }
       );
@@ -77,6 +76,9 @@ export default function App() {
               "593a26352cmsha2f8cbf6fd0cc89p14919djsn5a1d27b6cebd",
 
               "Content-Type": "application/json",
+                "52f456776emsh373fb71559d80c8p193cc0jsnb861ec37df67",
+              "Content-Type": "application/json",
+              /* "Content-Type": "application/json", */
             },
           });
 
