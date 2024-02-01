@@ -32,7 +32,7 @@ export default function Restaurants() {
           query: consult
         },
         headers: {
-          'X-RapidAPI-Key': 'e7ad36b881msh8e2a70e78dfdfe8p16ef80jsn7279e8c06fa7',
+          'X-RapidAPI-Key': 'cdcabfdec4msh89bf2d949a25620p174ac3jsn573ad325aef4',
           'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
         }
       }
@@ -62,7 +62,7 @@ export default function Restaurants() {
             locationId: locationId
           },
           headers: {
-            'X-RapidAPI-Key': 'e7ad36b881msh8e2a70e78dfdfe8p16ef80jsn7279e8c06fa7',
+            'X-RapidAPI-Key': 'cdcabfdec4msh89bf2d949a25620p174ac3jsn573ad325aef4',
             'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
           }
         };
