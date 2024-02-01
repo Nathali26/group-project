@@ -183,7 +183,6 @@ export default function App() {
       </form>
       <div
         style={{
-        
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -192,7 +191,6 @@ export default function App() {
         }}
       >
         {hotels.map((hotel, index) => (
-
           <div
             key={index}
             className="card"
@@ -215,18 +213,14 @@ export default function App() {
                 }}
               >
                 Book Now
-             
-            
-
-
-            </a>
-            <button
-              onClick={() => handleAddToFavourites(hotel)}
-              className="favourite-btn"
-            >
-              <FontAwesomeIcon icon={faHeart} />
-            </button>
-
+              </a>
+              <button
+                onClick={() => handleAddToFavourites(hotel)}
+                className="favourite-btn"
+              >
+                <FontAwesomeIcon icon={faHeart} />
+              </button>
+            </div>
           </div>
         ))}
       </div>
