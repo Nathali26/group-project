@@ -2,7 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import "./Flights.css";
-/* import FlightResults from "./Results"; */
+
+import FlightResults from "./FlightResults";
+
+
 export default function Flights() {
   //I set the backgrounds here because I was having trouble setting different backgrounds for different components
   useEffect(() => {
@@ -145,6 +148,7 @@ export default function Flights() {
       throw err; // superimportante !!
     }
   }
+
   return (
     <>
       {" "}
@@ -219,27 +223,7 @@ export default function Flights() {
         )}
         <button type="submit">Search</button>
       </form>
-      {results && (
-        <div>
-          <h2>Flight Search Results</h2>
-          {/* Render the flight search results here */}
-          {results.data.flights.map((flight, index) => (
-            <div key={index}>
-              <p>Flight {index + 1}</p>
-              {/* Map over each segment within the flight */}
-              {flight.segments.map((segment, segmentIndex) => (
-                <div key={segmentIndex}>
-                  {/* Display details for each segment */}
-                  <p>Departure: {segment.legs[0].departureDateTime}</p>
-                  <p>Arrival: {segment.legs[0].arrivalDateTime}</p>
-                  <p>Airline: {segment.legs[0].marketingCarrier.displayName}</p>
-                  {/* Add more details as needed */}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      )}
+      {results && <FlightResults results={results} />}
       {/* Error message if there's an error */}
       {error && <p>{error}</p>}
       {/* Loading indicator */}

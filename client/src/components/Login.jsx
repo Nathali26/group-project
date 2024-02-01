@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { auth, googleProvider } from "../firebase";
 import { login } from "../firebase";
+import "./Login.css";
 
 const Login = () => {
   const [user, setUser] = useState(null);
@@ -54,7 +55,7 @@ const Login = () => {
   };
   return (
     <div>
-      <h1>destiNation</h1>
+      <h1>DestiNation🛫</h1>
       {user ? (
         <div>
           <p>Welcome, {user.displayName || user.email}!</p>
@@ -72,12 +73,11 @@ const Login = () => {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={handleEmailSignUp}>
-            Register
-          </button>
-          <button onClick={handleEmailSignIn}>
-            Sign In
-          </button>
+
+          <button onClick={handleEmailSignUp}>Register</button>
+          <button onClick={handleEmailSignIn}>Sign In </button>
+          OR
+
           <button onClick={handleGoogleSignIn}>Sign In with Google</button>
         </div>
       )}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import './Hotels.css';
+import "./Hotels.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons"; // Import the heart icon for favourites
 
@@ -13,15 +13,16 @@ export default function App() {
 
   useEffect(() => {
     // Set the background image when the component mounts
-    document.body.style.backgroundImage = 'url("https://images.unsplash.com/photo-1600435335786-d74d2bb6de37?q=80&w=2060&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")';
-    document.body.style.backgroundSize = 'cover';
-    document.body.style.backgroundAttachment = 'fixed';
+    document.body.style.backgroundImage =
+      'url("https://images.unsplash.com/photo-1600435335786-d74d2bb6de37?q=80&w=2060&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")';
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundAttachment = "fixed";
 
     // Cleanup function to reset the background when the component unmounts
     return () => {
-      document.body.style.backgroundImage = '';
-      document.body.style.backgroundSize = '';
-      document.body.style.backgroundAttachment = '';
+      document.body.style.backgroundImage = "";
+      document.body.style.backgroundSize = "";
+      document.body.style.backgroundAttachment = "";
     };
   }, []);
 
@@ -29,7 +30,6 @@ export default function App() {
     try {
       const formattedCheckIn = new Date(checkIn).toISOString().split("T")[0];
       const formattedCheckOut = new Date(checkOut).toISOString().split("T")[0];
-
 
       const locationResponse = await axios.get(
         "https://tripadvisor16.p.rapidapi.com/api/v1/hotels/searchLocation",
@@ -41,24 +41,22 @@ export default function App() {
           headers: {
             "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
             "X-RapidAPI-Key":
+
             "593a26352cmsha2f8cbf6fd0cc89p14919djsn5a1d27b6cebd",
+
             "Content-Type": "application/json",
           },
         }
       );
-
 
       if (
         locationResponse.data &&
         locationResponse.data.data &&
         locationResponse.data.data.length > 0
       ) {
-        
-         const firstGeoId = locationResponse?.data?.data?.[0]?.geoId || null;
+        const firstGeoId = locationResponse?.data?.data?.[0]?.geoId || null;
 
-
-
-          console.log("el firstgeoId es este=" ,firstGeoId)
+        console.log("el firstgeoId es este=", firstGeoId);
 
         if (firstGeoId) {
           const hotelApiUrl =
@@ -75,7 +73,9 @@ export default function App() {
             headers: {
               "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
               "X-RapidAPI-Key":
+
               "593a26352cmsha2f8cbf6fd0cc89p14919djsn5a1d27b6cebd",
+
               "Content-Type": "application/json",
             },
           });
@@ -118,6 +118,23 @@ export default function App() {
       console.error("El error del catch es:", error);
     }
   };
+
+
+  const handleAddToFavourites = async (hotel) => {
+    try {
+      await axios.post("http://localhost:4000/api/favourites_list", {
+        title: hotel.title,
+        rating: hotel.rating,
+        provider: hotel.provider,
+        price: hotel.priceForDisplay,
+        externalUrl: hotel.commerceInfo?.externalUrl,
+      });
+      console.log("Hotel added to favourites successfully");
+    } catch (err) {
+      console.error("Error adding to favourites:", err);
+    }
+  };
+
 
   return (
     <div>
@@ -175,6 +192,7 @@ export default function App() {
         }}
       >
         {hotels.map((hotel, index) => (
+
           <div
             key={index}
             className="card"
@@ -197,8 +215,18 @@ export default function App() {
                 }}
               >
                 Book Now
-              </a>
-            </div>
+             
+            
+
+
+            </a>
+            <button
+              onClick={() => handleAddToFavourites(hotel)}
+              className="favourite-btn"
+            >
+              <FontAwesomeIcon icon={faHeart} />
+            </button>
+
           </div>
         ))}
       </div>
