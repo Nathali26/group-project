@@ -43,7 +43,6 @@ export default function App() {
             "X-RapidAPI-Key":
               "52f456776emsh373fb71559d80c8p193cc0jsnb861ec37df67",
             "Content-Type": "application/json",
-            /* "Content-Type": "application/json", */
           },
         }
       );
@@ -72,13 +71,8 @@ export default function App() {
             headers: {
               "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
               "X-RapidAPI-Key":
-
-              "593a26352cmsha2f8cbf6fd0cc89p14919djsn5a1d27b6cebd",
-
+                "593a26352cmsha2f8cbf6fd0cc89p14919djsn5a1d27b6cebd",
               "Content-Type": "application/json",
-                "52f456776emsh373fb71559d80c8p193cc0jsnb861ec37df67",
-              "Content-Type": "application/json",
-              /* "Content-Type": "application/json", */
             },
           });
 
@@ -90,7 +84,6 @@ export default function App() {
           ) {
             const hotelData = hotelResponse.data.data.data;
             if (hotelData.length > 0) {
-  
               const formattedHotels = hotelData.map((hotel) => ({
                 id: hotel.id,
                 title: hotel.title,
@@ -100,12 +93,12 @@ export default function App() {
                 externalUrl: hotel.commerceInfo?.externalUrl || null,
               }));
 
-            setHotels(formattedHotels);
-            console.log("Complete Hotel Response:", hotelResponse);
-            console.log("Hotel Details:", formattedHotels);
-          } else {
-            console.error("No hotels found in the response");
-          }
+              setHotels(formattedHotels);
+              console.log("Complete Hotel Response:", hotelResponse);
+              console.log("Hotel Details:", formattedHotels);
+            } else {
+              console.error("No hotels found in the response");
+            }
           } else {
             console.error("Invalid response structure:", hotelResponse.data);
           }
@@ -121,7 +114,6 @@ export default function App() {
     }
   };
 
-
   const handleAddToFavourites = async (hotel) => {
     try {
       await axios.post("http://localhost:4000/api/favourites_list", {
@@ -136,7 +128,6 @@ export default function App() {
       console.error("Error adding to favourites:", err);
     }
   };
-
 
   return (
     <div>

@@ -5,7 +5,6 @@ import "./Flights.css";
 
 import FlightResults from "./FlightResults";
 
-
 export default function Flights() {
   //I set the backgrounds here because I was having trouble setting different backgrounds for different components
   useEffect(() => {
@@ -100,7 +99,7 @@ export default function Flights() {
       }
       const result = await ticketResponse.json();
       setResults(result);
-      setIsLoading(false);
+      setIsLoading(true);
       console.log(result);
     } catch (error) {
       setIsLoading(false);
@@ -138,7 +137,7 @@ export default function Flights() {
       if (!extractedAirportCode) {
         throw new Error("Airport code not found in response");
       }
-      setIsLoading(false);
+      setIsLoading(true);
       console.log(extractedAirportCode);
       return extractedAirportCode;
     } catch (err) {
