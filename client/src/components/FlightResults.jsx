@@ -24,6 +24,10 @@ export default function FlightResults({ results }) {
     }
   };
 
+  function deleteCard(a) {
+    console.log(a);
+  }
+
   return (
     <div>
       {results && (
@@ -81,9 +85,7 @@ export default function FlightResults({ results }) {
                           <p className="card-text">
                             Lowest total price: {lowestTotalPrice}
                           </p>
-                          <button onClick={() => deleteCb(segment.legs[0].id)}>
-                            delete
-                          </button>
+                          <button onClick={() => deleteCard(a)}>delete</button>
                           <button
                             onClick={() => handleAddToFavourites(segment)}
                             className="favourite-btn"
