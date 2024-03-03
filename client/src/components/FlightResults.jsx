@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons"; // Import the heart icon for favourites
 
@@ -24,9 +25,16 @@ export default function FlightResults({ results }) {
     }
   };
 
-  function deleteCard(a) {
-    console.log(a);
-  }
+  const [flightSegments, setFlightSegments] = useState(
+    results.data.flights.segments
+  );
+  console.log("this is flightSegments", flightSegments);
+
+  const deleteCard = (segmentToDelete) => {
+    // flightSegments.filter((segment) => segment.id !== segmentToDelete.id);
+    console.log(deleteCard);
+  };
+  // id of the current segment is equal to the id of the segmentToDelete, the expression evaluates to false. In this case, the current segment is filtered out from the array
 
   return (
     <div>
@@ -85,7 +93,9 @@ export default function FlightResults({ results }) {
                           <p className="card-text">
                             Lowest total price: {lowestTotalPrice}
                           </p>
-                          <button onClick={() => deleteCard(a)}>delete</button>
+                          <button onClick={() => deleteCard(segment)}>
+                            delete
+                          </button>
                           <button
                             onClick={() => handleAddToFavourites(segment)}
                             className="favourite-btn"
