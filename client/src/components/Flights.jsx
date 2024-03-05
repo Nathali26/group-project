@@ -222,7 +222,9 @@ export default function Flights() {
         )}
         <button type="submit">Search</button>
       </form>
-      {results && <FlightResults results={results} />}
+      {results && (
+        <FlightResults results={results} /* deleteCard={deleteCard} */ />
+      )}
       {/* Error message if there's an error */}
       {error && <p>{error}</p>}
       {/* Loading indicator */}

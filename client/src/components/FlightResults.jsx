@@ -4,7 +4,11 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons"; // Import the heart icon for favourites
 
-export default function FlightResults({ results }) {
+export default function FlightResults({ results /* deleteCard */ }) {
+  const [segments, setSegments] = useState(results.data.flights[0].segments); //  I ABSOLUTELY need to update the state or re-render the component to reflect the changes!!!!!!
+  console.log(results.data.flights.segments);
+  console.log(results);
+
   const handleAddToFavourites = async (segment) => {
     const flightDetails = {
       title: `Flight: ${segment.legs[0].originStationCode} to ${segment.legs[0].destinationStationCode}`,
@@ -24,17 +28,15 @@ export default function FlightResults({ results }) {
       console.error("Error adding to favourites:", err);
     }
   };
+  // console.log(results.data.flights[0].segments);
+  const deleteCard = (segmentIndex) => {
+    const updatedSegments = segments.filter(
+      (_, index) => index !== segmentIndex
+    );
+    setSegments(updatedSegments);
+  }; // _ indicates that a parameter is intentionally ignored or not used within a function. To filter by index, you would typically use the second argument
 
-  const [flightSegments, setFlightSegments] = useState(
-    results.data.flights.segments
-  );
-  console.log("this is flightSegments", flightSegments);
-
-  const deleteCard = (segmentToDelete) => {
-    // flightSegments.filter((segment) => segment.id !== segmentToDelete.id);
-    console.log(deleteCard);
-  };
-  // id of the current segment is equal to the id of the segmentToDelete, the expression evaluates to false. In this case, the current segment is filtered out from the array
+  // if you are at the index x, delete the segment y of the index x
 
   return (
     <div>
@@ -55,6 +57,7 @@ export default function FlightResults({ results }) {
             const lowestPriceUrl = flight.purchaseLinks.map((link) => link.url);
 
             return (
+              // the index of each flight within the results.data.flights array.
               <div className="card mb-3" key={index}>
                 <div className="card-body">
                   <h5 className="card-title">Option {index + 1}</h5>
@@ -93,7 +96,7 @@ export default function FlightResults({ results }) {
                           <p className="card-text">
                             Lowest total price: {lowestTotalPrice}
                           </p>
-                          <button onClick={() => deleteCard(segment)}>
+                          <button onClick={() => deleteCard(segmentIndex)}>
                             delete
                           </button>
                           <button
@@ -138,3 +141,17 @@ export default function FlightResults({ results }) {
     </div>
   );
 }
+
+/* Sure, let's break down this code:
+
+<div className="card mb-3" key={index}>: This line creates a Bootstrap card element with some margin (mb-3 class) and assigns a unique key index to it. The index variable is likely coming from the map function's index parameter.
+<div className="card-body">: This line creates the body of the Bootstrap card.
+<h5 className="card-title">Option {index + 1}</h5>: This line creates a card title with the text "Option" followed by the index incremented by 1 (index + 1). This is inside a level 5 heading (<h5>).
+{flight.segments.map((segment, segmentIndex) => ...)}: This line iterates over each segment in the flight.segments array using the map function. For each segment, it executes the provided function, which returns JSX (HTML-like syntax).
+Inside the map function:
+
+segmentIndex === 0: This condition checks if the current segment is the first one in the array.
+segment.legs[0].departureDateTime !== flight.segments[segmentIndex - 1].legs[0].departureDateTime: This condition checks if the departure date and time of the current segment are different from the previous segment's departure date and time.
+segment.legs[0].arrivalDateTime !== flight.segments[segmentIndex - 1].legs[0].arrivalDateTime: This condition checks if the arrival date and time of the current segment are different from the previous segment's arrival date and time.
+segment.legs[0].marketingCarrier.displayName !== flight.segments[segmentIndex - 1].legs[0].marketingCarrier.displayName: This condition checks if the marketing carrier's display name of the current segment is different from the previous segment's marketing carrier's display name.
+If any of these conditions are true, it renders a new card with the details of the current segment inside it. */
