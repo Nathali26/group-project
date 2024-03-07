@@ -1,13 +1,25 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons"; // Import the heart icon for favourites
 
 export default function FlightResults({ results /* deleteCard */ }) {
-  const [segments, setSegments] = useState(results.data.flights[0].segments); //  I ABSOLUTELY need to update the state or re-render the component to reflect the changes!!!!!!
-  console.log(results.data.flights.segments);
+  const [segmentsState, setSegmentsState] = useState([]); //  I ABSOLUTELY need to update the state or re-render the component to reflect the changes!!!!!!
+  console.log(results.data.flights[0].segments);
   console.log(results);
+
+  // Function to fetch data and update segmentsState
+  const fetchData = () => {
+    // Make API call or perform data fetching logic
+    // Once you have the data, update segmentsState
+    setSegmentsState(results.data.flights[0].segments);
+  };
+
+  useEffect(() => {
+    // Fetch data when the component mounts
+    fetchData();
+  }, []); // Empty dependency array ensures this effect runs only once
 
   const handleAddToFavourites = async (segment) => {
     const flightDetails = {
@@ -30,13 +42,19 @@ export default function FlightResults({ results /* deleteCard */ }) {
   };
   // console.log(results.data.flights[0].segments);
   const deleteCard = (segmentIndex) => {
-    const updatedSegments = segments.filter(
+    const updatedSegments = segmentsState.filter(
       (_, index) => index !== segmentIndex
     );
-    setSegments(updatedSegments);
+    setSegmentsState(updatedSegments);
   }; // _ indicates that a parameter is intentionally ignored or not used within a function. To filter by index, you would typically use the second argument
 
   // if you are at the index x, delete the segment y of the index x
+
+  /*  const deleteCard = (segmentIndex) => {
+    const updatedSegments = [...segmentsState];
+    updatedSegments.splice(segmentIndex, 1);
+    setSegmentsState(updatedSegments);
+  }; */
 
   return (
     <div>
